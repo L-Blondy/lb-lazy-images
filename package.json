@@ -1,6 +1,6 @@
 {
 	"name": "lb-lazy-images",
-	"version": "1.0.12",
+	"version": "1.0.13",
 	"description": "Lazy load IMG src",
 	"main": "bundle.js",
 	"scripts": {
@@ -18,6 +18,12 @@
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.7.0",
+		"@babel/core": "^7.7.0",
 		"@babel/preset-env": "^7.7.0"
+	},
+	"homepage": "https://github.com/L-Blondy/lb-lazy-images",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/L-Blondy/lb-lazy-images.git"
 	}
 }
