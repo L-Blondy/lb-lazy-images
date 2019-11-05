@@ -1,9 +1,9 @@
-#lb-lazy-images
+# lb-lazy-images
 
 Lazy load images located in 
 > src/assets
 
-##Usage
+## Usage
 
 file.js
 ```
