@@ -1,6 +1,6 @@
 {
 	"name": "lb-lazy-images",
-	"version": "1.0.13",
+	"version": "1.0.28",
 	"description": "Lazy load IMG src",
 	"main": "bundle.js",
 	"scripts": {
@@ -13,9 +13,7 @@
 	"files": [
 		"bundle.js"
 	],
-	"dependencies": {
-		"core-js": "^3.3.6"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"@babel/cli": "^7.7.0",
 		"@babel/core": "^7.7.0",

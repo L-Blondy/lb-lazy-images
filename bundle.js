@@ -21,15 +21,25 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-require("core-js/modules/es.object.entries");
-
-require("core-js/modules/es.typed-array.for-each");
-
-require("core-js/modules/es.object.values");
-
+// require( "core-js/modules/es.object.entries" );   => correct way to import polyfills from CORE-JS
 var images = require("./../../src/assets/**/*.*");
 
 var getAssets = function getAssets(images, relPath) {
+  //Polyfill for Object.entries from MDN
+  if (!Object.entries) {
+    Object.entries = function (obj) {
+      var ownProps = Object.keys(obj),
+          i = ownProps.length,
+          resArray = new Array(i);
+
+      while (i--) {
+        resArray[i] = [ownProps[i], obj[ownProps[i]]];
+      }
+
+      return resArray;
+    };
+  }
+
   var pathList = {};
 
   var _loop = function _loop() {
@@ -63,8 +73,9 @@ var pathList = getAssets(images, "");
 
 function loadImg(elements) {
   //nodelist
-  if (NodeList.prototype.isPrototypeOf(elements)) elements.forEach(function (node) {
-    node.src = pathList[node.dataset.asset][Object.keys(pathList[node.dataset.asset])[0]];
-  }); //single image
+  if (elements.length) //NodeList.prototype.isPrototypeOf( elements ) )
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].src = pathList[elements[i].dataset.asset][Object.keys(pathList[elements[i].dataset.asset])[0]];
+    } //single image
   else elements.src = pathList[elements.dataset.asset][Object.keys(pathList[elements.dataset.asset])[0]];
 }
