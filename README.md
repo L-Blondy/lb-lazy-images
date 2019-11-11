@@ -1,9 +1,29 @@
 # lb-lazy-images
 
-Lazy load images located in 
-> src/assets
+Lazy load images
 
-## Usage
+## Auto load (on Scroll)
+
+Add the `loadOnScroll` prop to the `img` tag to load it on scroll
+
+file.js
+```
+import "lb-lazy-images"
+...
+```
+
+index.html
+```
+<img 
+	src="placeholder.jpg" 
+	data-asset=<<path from "src/asset", ex="subfolder/myImage">> 
+	loadOnScroll
+/>
+```
+
+## Manual load (on event)
+
+Just pass the target as an argument on the `loadImg` function to load the images when wanted.
 
 file.js
 ```
@@ -16,7 +36,7 @@ index.html
 ```
 <img 
 	src="placeholder.jpg" 
-	data-asset=<<path from "asset", ex="subfolder/myImage">> 
+	data-asset=<<path from "src/asset", ex="subfolder/myImage">> 
 />
 ```
 
