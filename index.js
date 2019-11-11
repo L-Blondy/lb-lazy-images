@@ -43,3 +43,23 @@ export default function loadImg ( elements ) {
 	else
 		elements.src = pathList[ elements.dataset.asset ][ Object.keys( pathList[ elements.dataset.asset ] )[ 0 ] ]
 }
+const imagesScroll = document.querySelectorAll( "[loadOnScroll]" )
+
+try {
+	function loadCb ( entries ) {
+		entries.forEach( ( entry ) => {
+			if ( entry.isIntersecting ) {
+				loadImg( entry.target )
+			}
+		} )
+	}
+	const loadObs = new IntersectionObserver( loadCb, { rootMargin: "0px 0px 500px 0px" } );
+
+	Array.prototype.forEach.call( imagesScroll, image => {
+		loadObs.observe( image )
+	} )
+}
+catch ( error ) {
+	console.log( "EagerLoaded as a fallback" )
+	loadImg( imagesScroll )
+}

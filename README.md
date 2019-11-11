@@ -16,7 +16,10 @@ index.html
 ```
 <img 
 	src="placeholder.jpg" 
-	data-asset=<<path from "asset", ex="subfolder/myImage.jpg">> 
+	data-asset=<<path from "asset", ex="subfolder/myImage">> 
 />
 ```
+
+## Notes
+- Put no extension on the `data-asset` property
 

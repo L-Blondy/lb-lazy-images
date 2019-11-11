@@ -1,10 +1,10 @@
 {
 	"name": "lb-lazy-images",
-	"version": "1.0.28",
+	"version": "1.0.29",
 	"description": "Lazy load IMG src",
 	"main": "bundle.js",
 	"scripts": {
-		"start": "npx babel index.js --watch --out-file bundle.js",
+		"build": "npx babel index.js --out-file bundle.js && uglifyjs bundle.js --output bundle.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
@@ -17,7 +17,8 @@
 	"devDependencies": {
 		"@babel/cli": "^7.7.0",
 		"@babel/core": "^7.7.0",
-		"@babel/preset-env": "^7.7.0"
+		"@babel/preset-env": "^7.7.0",
+		"uglify-js": "^3.6.8"
 	},
 	"homepage": "https://github.com/L-Blondy/lb-lazy-images",
 	"repository": {
