@@ -50,6 +50,7 @@ try {
 		entries.forEach( ( entry ) => {
 			if ( entry.isIntersecting ) {
 				loadImg( entry.target )
+				loadObs.unobserve( entry.target )
 			}
 		} )
 	}
