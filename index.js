@@ -1,9 +1,7 @@
-// require( "core-js/modules/es.object.entries" );   => correct way to import polyfills from CORE-JS
-
 const images = require( "./../../src/assets/**/*.*" )
 
+//get compiled path list
 const getAssets = ( images, relPath ) => {
-
 	//Polyfill for Object.entries from MDN
 	if ( !Object.entries ) {
 		Object.entries = function ( obj ) {
@@ -16,7 +14,6 @@ const getAssets = ( images, relPath ) => {
 			return resArray;
 		};
 	}
-
 	let pathList = {}
 	for ( const [ key, value ] of Object.entries( images ) ) {
 		var values = Object.keys( images[ key ] ).map( e => images[ key ][ e ] )
@@ -34,33 +31,76 @@ const getAssets = ( images, relPath ) => {
 const pathList = getAssets( images, "" )
 
 export default function loadImg ( elements ) {
+	const promises = []
 	//nodelist
-	if ( elements.length )//NodeList.prototype.isPrototypeOf( elements ) )
+	if ( !elements.length ) {
+		elements = new Array( elements )
+	}
+	if ( elements.length ) {
 		for ( let i = 0; i < elements.length; i++ ) {
-			elements[ i ].src = pathList[ elements[ i ].dataset.asset ][ Object.keys( pathList[ elements[ i ].dataset.asset ] )[ 0 ] ]
+			if ( "Promise" in window ) {
+				const promise = new Promise( function ( resolve, reject ) {
+					//create cache
+					const cacheImg = document.createElement( "img" )
+					//pass all attributes
+					const attributes = elements[ i ].attributes
+					for ( let i = 0; i < attributes.length; i++ ) {
+						if ( attributes[ i ].name !== "src" && attributes[ i ].name !== "data-asset" )
+							cacheImg.setAttribute( attributes[ i ].name, attributes[ i ].value )
+					}
+					//pass correct src
+
+					if ( !pathList[ elements[ i ].dataset.asset ] ) {
+						resolve( elements[ i ] )
+						console.error( `<img data-asset="${ elements[ i ].dataset.asset }"/> not loaded, please check the path` )
+					}
+					else
+						cacheImg.src = pathList[ elements[ i ].dataset.asset ][ Object.keys( pathList[ elements[ i ].dataset.asset ] )[ 0 ] ]
+					cacheImg.onload = () => resolve( cacheImg );
+
+				} )
+				promise.then( cacheImg => {
+					elements[ i ].parentNode.replaceChild( cacheImg, elements[ i ] )
+					return "";
+				} )
+				promises.push( promise )
+			}
+			else {
+				//fallback if no promise
+				try {
+					elements[ i ].src = pathList[ elements[ i ].dataset.asset ][ Object.keys( pathList[ elements[ i ].dataset.asset ] )[ 0 ] ]
+				}
+				catch ( error ) {
+					console.error( `<img data-asset="${ elements[ i ].dataset.asset }"/> not loaded, please check the path` )
+				}
+			}
 		}
-	//single image
-	else
-		elements.src = pathList[ elements.dataset.asset ][ Object.keys( pathList[ elements.dataset.asset ] )[ 0 ] ]
+	}
+	//return Promise.all( promises )
 }
+//auto load LOAD-ON-SCROLL
 const imagesScroll = document.querySelectorAll( "[loadOnScroll]" )
 
-try {
-	function loadCb ( entries ) {
-		entries.forEach( ( entry ) => {
-			if ( entry.isIntersecting ) {
-				loadImg( entry.target )
-				loadObs.unobserve( entry.target )
-			}
+if ( imagesScroll.length ) {
+	try {
+		function loadCb ( entries ) {
+			entries.forEach( ( entry ) => {
+				if ( entry.intersectionRatio > 0 ) {
+					loadImg( entry.target )
+					loadObs.unobserve( entry.target )
+				}
+			} )
+		}
+		const loadObs = new IntersectionObserver( loadCb, { rootMargin: "0px 0px 500px 0px" } );
+
+		Array.prototype.forEach.call( imagesScroll, image => {
+			loadObs.observe( image )
 		} )
 	}
-	const loadObs = new IntersectionObserver( loadCb, { rootMargin: "0px 0px 500px 0px" } );
-
-	Array.prototype.forEach.call( imagesScroll, image => {
-		loadObs.observe( image )
-	} )
-}
-catch ( error ) {
-	console.log( "EagerLoaded as a fallback" )
-	loadImg( imagesScroll )
+	//fallback
+	catch ( error ) {
+		console.log( imagesScroll )
+		console.log( "EagerLoaded as a fallback" )
+		loadImg( imagesScroll )
+	}
 }

@@ -1,6 +1,7 @@
 # lb-lazy-images
 
-Lazy load images
+Lazy load images, returns a `Promise` resolving when all images are loaded.
+The return value is **always** an array
 
 ## Auto load (on Scroll)
 
@@ -29,7 +30,10 @@ file.js
 ```
 import loadImg from "lb-lazy-images"
 ...
-element.addEventListener("click", e => loadImg(<target img tag>))
+element.addEventListener("click", e => {
+	loadImg(<image or NodeList here>)
+		.then( images => images[0].parentNode.classList += "display"  )
+})
 ```
 
 index.html
