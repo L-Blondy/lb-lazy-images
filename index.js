@@ -48,19 +48,23 @@ export default function loadImg ( elements ) {
 						if ( attributes[ i ].name !== "src" && attributes[ i ].name !== "data-src" && attributes[ i ].name !== "data-srcset" )
 							cacheImg.setAttribute( attributes[ i ].name, attributes[ i ].value )
 					}
+
 					//get new srcset
 					const srcset = elements[ i ].dataset.srcset.split( [ "," ] );
 					srcset.forEach( source => {
-						const endIndex = source.indexOf( " " );
-						let path = source.substring( 0, endIndex )
+						const endIndex = source.substring( 1 ).indexOf( " " );
+						let path = source.substring( 0, endIndex + 1 )
+						if ( !path ) return;
 						let x = 0;
-						while ( path[ x ].toLowerCase() === path[ x ].toUpperCase() )
+						while ( path[ x ].toLowerCase() === path[ x ].toUpperCase() ) {
 							x++
-						path = source.substring( x, endIndex )
-						const size = source.substring( endIndex )
+						}
+						path = source.substring( x, endIndex + 1 )
+						const size = source.substring( endIndex + 1 )
 						const newPath = pathList[ path ][ Object.keys( pathList[ path ] )[ 0 ] ]
 						cacheImg.srcset += newPath + " " + size + ", "
 					} )
+
 					//get new  src
 					if ( !pathList[ elements[ i ].dataset.src ] ) {
 						resolve( elements[ i ] )
@@ -112,7 +116,6 @@ if ( imagesScroll.length ) {
 	}
 	//fallback
 	catch ( error ) {
-		console.log( imagesScroll )
 		console.log( "EagerLoaded as a fallback" )
 		loadImg( imagesScroll )
 	}
