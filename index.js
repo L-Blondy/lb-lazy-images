@@ -45,17 +45,30 @@ export default function loadImg ( elements ) {
 					//pass all attributes
 					const attributes = elements[ i ].attributes
 					for ( let i = 0; i < attributes.length; i++ ) {
-						if ( attributes[ i ].name !== "src" && attributes[ i ].name !== "data-asset" )
+						if ( attributes[ i ].name !== "src" && attributes[ i ].name !== "data-src" && attributes[ i ].name !== "data-srcset" )
 							cacheImg.setAttribute( attributes[ i ].name, attributes[ i ].value )
 					}
-					//pass correct src
-
-					if ( !pathList[ elements[ i ].dataset.asset ] ) {
+					//get new srcset
+					const srcset = elements[ i ].dataset.srcset.split( [ "," ] );
+					srcset.forEach( source => {
+						const endIndex = source.indexOf( " " );
+						let path = source.substring( 0, endIndex )
+						let x = 0;
+						while ( path[ x ].toLowerCase() === path[ x ].toUpperCase() )
+							x++
+						path = source.substring( x, endIndex )
+						const size = source.substring( endIndex )
+						const newPath = pathList[ path ][ Object.keys( pathList[ path ] )[ 0 ] ]
+						cacheImg.srcset += newPath + " " + size + ", "
+					} )
+					//get new  src
+					if ( !pathList[ elements[ i ].dataset.src ] ) {
 						resolve( elements[ i ] )
-						console.error( `<img data-asset="${ elements[ i ].dataset.asset }"/> not loaded, please check the path` )
+						console.error( `<img data-src="${ elements[ i ].dataset.src }"/> not loaded, please check the path` )
 					}
-					else
-						cacheImg.src = pathList[ elements[ i ].dataset.asset ][ Object.keys( pathList[ elements[ i ].dataset.asset ] )[ 0 ] ]
+					else {
+						cacheImg.src = pathList[ elements[ i ].dataset.src ][ Object.keys( pathList[ elements[ i ].dataset.src ] )[ 0 ] ]
+					}
 					cacheImg.onload = () => resolve( cacheImg );
 
 				} )
@@ -68,10 +81,10 @@ export default function loadImg ( elements ) {
 			else {
 				//fallback if no promise
 				try {
-					elements[ i ].src = pathList[ elements[ i ].dataset.asset ][ Object.keys( pathList[ elements[ i ].dataset.asset ] )[ 0 ] ]
+					elements[ i ].src = pathList[ elements[ i ].dataset.src ][ Object.keys( pathList[ elements[ i ].dataset.src ] )[ 0 ] ]
 				}
 				catch ( error ) {
-					console.error( `<img data-asset="${ elements[ i ].dataset.asset }"/> not loaded, please check the path` )
+					console.error( `<img data-src="${ elements[ i ].dataset.src }"/> not loaded, please check the path` )
 				}
 			}
 		}
