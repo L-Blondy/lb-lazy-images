@@ -93,7 +93,9 @@ export default function loadImg ( elements ) {
 			}
 		}
 	}
-	return Promise.all( promises )
+	if ( "Promise" in window ) {
+		return Promise.all( promises )
+	}
 }
 //auto load LOAD-ON-SCROLL
 const imagesScroll = document.querySelectorAll( "[loadOnScroll]" )
