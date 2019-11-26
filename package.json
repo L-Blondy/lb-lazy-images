@@ -1,10 +1,10 @@
 {
 	"name": "lb-lazy-images",
-	"version": "1.2.4",
+	"version": "1.2.6",
 	"description": "Lazy load IMG src",
 	"main": "bundle.js",
 	"scripts": {
-		"build": "npx babel index.js --out-file bundle.js && uglifyjs bundle.js --output bundle.js",
+		"build": "npx babel index.js --out-file bundle.js && uglifyjs bundle.js -o bundle.js -c -m",
 		"deploy": "npm run build && npm publish",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},

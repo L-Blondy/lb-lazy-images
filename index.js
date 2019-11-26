@@ -50,21 +50,22 @@ export default function loadImg ( elements ) {
 					}
 
 					//get new srcset
-					const srcset = elements[ i ].dataset.srcset.split( [ "," ] );
-					srcset.forEach( source => {
-						const endIndex = source.substring( 1 ).indexOf( " " );
-						let path = source.substring( 0, endIndex + 1 )
-						if ( !path ) return;
-						let x = 0;
-						while ( path[ x ].toLowerCase() === path[ x ].toUpperCase() ) {
-							x++
-						}
-						path = source.substring( x, endIndex + 1 )
-						const size = source.substring( endIndex + 1 )
-						const newPath = pathList[ path ][ Object.keys( pathList[ path ] )[ 0 ] ]
-						cacheImg.srcset += newPath + " " + size + ", "
-					} )
-
+					if ( elements[ i ].dataset.srcset ) {
+						const srcset = elements[ i ].dataset.srcset.split( [ "," ] );
+						srcset.forEach( source => {
+							const endIndex = source.substring( 1 ).indexOf( " " );
+							let path = source.substring( 0, endIndex + 1 )
+							if ( !path ) return;
+							let x = 0;
+							while ( path[ x ].toLowerCase() === path[ x ].toUpperCase() ) {
+								x++
+							}
+							path = source.substring( x, endIndex + 1 )
+							const size = source.substring( endIndex + 1 )
+							const newPath = pathList[ path ][ Object.keys( pathList[ path ] )[ 0 ] ]
+							cacheImg.srcset += newPath + " " + size + ", "
+						} )
+					}
 					//get new  src
 					if ( !pathList[ elements[ i ].dataset.src ] ) {
 						resolve( elements[ i ] )
