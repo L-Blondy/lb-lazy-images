@@ -1,6 +1,6 @@
 {
 	"name": "lb-lazy-images",
-	"version": "1.2.6",
+	"version": "1.2.7",
 	"description": "Lazy load IMG src",
 	"main": "bundle.js",
 	"scripts": {
