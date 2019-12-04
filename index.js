@@ -30,7 +30,7 @@ const getAssets = ( images, relPath ) => {
 }
 const pathList = getAssets( images, "" )
 
-export default function loadImg ( elements ) {
+export function loadImg ( elements ) {
 	const promises = []
 	//nodelist
 	if ( !elements.length ) {
@@ -98,28 +98,30 @@ export default function loadImg ( elements ) {
 		return Promise.all( promises )
 	}
 }
-//auto load LOAD-ON-SCROLL
-const imagesScroll = document.querySelectorAll( "[loadOnScroll]" )
+//LOAD-ON-SCROLL
+export function loadOnScroll () {
+	const imagesScroll = document.querySelectorAll( "[loadOnScroll]" )
 
-if ( imagesScroll.length ) {
-	try {
-		function loadCb ( entries ) {
-			entries.forEach( ( entry ) => {
-				if ( entry.intersectionRatio > 0 ) {
-					loadImg( entry.target )
-					loadObs.unobserve( entry.target )
-				}
+	if ( imagesScroll.length ) {
+		try {
+			function loadCb ( entries ) {
+				entries.forEach( ( entry ) => {
+					if ( entry.intersectionRatio > 0 ) {
+						loadImg( entry.target )
+						loadObs.unobserve( entry.target )
+					}
+				} )
+			}
+			const loadObs = new IntersectionObserver( loadCb, { rootMargin: "0px 0px 500px 0px" } );
+
+			Array.prototype.forEach.call( imagesScroll, image => {
+				loadObs.observe( image )
 			} )
 		}
-		const loadObs = new IntersectionObserver( loadCb, { rootMargin: "0px 0px 500px 0px" } );
-
-		Array.prototype.forEach.call( imagesScroll, image => {
-			loadObs.observe( image )
-		} )
-	}
-	//fallback
-	catch ( error ) {
-		console.log( "EagerLoaded as a fallback" )
-		loadImg( imagesScroll )
+		//fallback
+		catch ( error ) {
+			console.log( "EagerLoaded as a fallback" )
+			loadImg( imagesScroll )
+		}
 	}
 }

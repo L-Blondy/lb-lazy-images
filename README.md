@@ -9,8 +9,9 @@ Add the `loadOnScroll` prop to the `img` tag to load it on scroll
 
 file.js
 ```
-import "lb-lazy-images"
+import { loadOnScroll } from  "lb-lazy-images"
 ...
+loadOnScroll()
 ```
 
 index.html
@@ -29,7 +30,7 @@ Just pass the target as an argument on the `loadImg` function to load the images
 
 file.js
 ```
-import loadImg from "lb-lazy-images"
+import { loadImg } from "lb-lazy-images"
 ...
 element.addEventListener("click", e => {
 	loadImg(<image or NodeList here>)
