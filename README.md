@@ -11,7 +11,7 @@ file.js
 ```
 import { loadOnScroll } from  "lb-lazy-images"
 ...
-loadOnScroll()
+loadOnScroll(root, margin="500px")
 ```
 
 index.html
