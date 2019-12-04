@@ -99,7 +99,7 @@ export function loadImg ( elements ) {
 	}
 }
 //LOAD-ON-SCROLL
-export function loadOnScroll () {
+export function loadOnScroll ( root ) {
 	const imagesScroll = document.querySelectorAll( "[loadOnScroll]" )
 
 	if ( imagesScroll.length ) {
@@ -112,7 +112,7 @@ export function loadOnScroll () {
 					}
 				} )
 			}
-			const loadObs = new IntersectionObserver( loadCb, { rootMargin: "0px 0px 500px 0px" } );
+			const loadObs = new IntersectionObserver( loadCb, { root, rootMargin: "0px 0px 500px 0px" } );
 
 			Array.prototype.forEach.call( imagesScroll, image => {
 				loadObs.observe( image )
