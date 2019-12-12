@@ -112,7 +112,7 @@ export function loadOnScroll ( root, margin = "500px" ) {
 					}
 				} )
 			}
-			const loadObs = new IntersectionObserver( loadCb, { root, rootMargin: `0px 0px ${ margin } 0px` } );
+			const loadObs = new IntersectionObserver( loadCb, { root, rootMargin: `${ margin } ${ margin } ${ margin } ${ margin }` } );
 
 			Array.prototype.forEach.call( imagesScroll, image => {
 				loadObs.observe( image )
