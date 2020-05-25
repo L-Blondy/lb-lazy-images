@@ -1,17 +1,20 @@
 # lb-lazy-images
 
-Lazy load images, returns a `Promise` resolving when all images are loaded.
-The return value is **always** an array
+Lazy load images.  
+Based on the `IntersectionObserver` API.
+All images will eagerload as a fallback if the IntersectionObserver API is not supported. You can however polyfill it if you wish.  
 
 ## Auto load (on Scroll)
 
-Add the `loadOnScroll` prop to the `img` tag to load it on scroll
+Add the `loadOnScroll` prop to the `img` tag.  
+Define a `data-src` and/or `data-srcset`.  
+Call the `loadOnScroll` function to setup the IntersectionObserver.  
 
 file.js
 ```
 import { loadOnScroll } from  "lb-lazy-images"
 ...
-loadOnScroll(root, margin="500px")
+loadOnScroll(root=<body>, margin="500px")
 ```
 
 index.html
@@ -19,14 +22,20 @@ index.html
 <img 
 	src="placeholder.jpg" 
 	data-src=<<path from "src/asset", ex="subfolder/myImage">> 
-	data-srcset=<<"path width, path width, ...">>
+	data-srcset=<<"path, path, path, ...">>
 	loadOnScroll
 />
 ```
 
+### Note: 
+- 'root' corresponds to the 'root' of the intersection observer, defaults to the <body> tag.
+- Margin applies on all sides of the element, defaults to 500px
+- For the `data-src` && `data-srcset` properties: use not file extension, path begins from `src/assets` excluded
+
 ## Manual load (on event)
 
 Just pass the target as an argument on the `loadImg` function to load the images when wanted.
+It returns a Promise resolving with an array of the element(s) passed as argument.
 
 file.js
 ```
@@ -35,6 +44,7 @@ import { loadImg } from "lb-lazy-images"
 element.addEventListener("click", e => {
 	loadImg(<image or NodeList here>)
 		.then( images => images[0].parentNode.classList += "display"  )
+		.then(()=> do something else)
 })
 ```
 
@@ -46,8 +56,4 @@ index.html
 	data-srcset=<<"path width, path width, ...">>
 />
 ```
-
-## Notes
-- Put no extension on the `data-src` && data-srcset properties
-- Path begins from `src/assets` excluded
 
