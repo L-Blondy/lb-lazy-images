@@ -14,7 +14,7 @@ file.js
 ```
 import { loadOnScroll } from  "lb-lazy-images"
 ...
-loadOnScroll(root=<body>, margin="500px")
+loadOnScroll(root=viewport, margin="500px")
 ```
 
 index.html
@@ -28,7 +28,7 @@ index.html
 ```
 
 ### Note: 
-- 'root' corresponds to the 'root' of the intersection observer, defaults to the <body> tag.
+- 'root' corresponds to the 'root' of the IntersectionObserver, defaults to the viewport.
 - Margin applies on all sides of the element, defaults to 500px
 - For the `data-src` && `data-srcset` properties: use not file extension, path begins from `src/assets` excluded
 
