@@ -8,13 +8,14 @@
 		"deploy": "npm run build && npm publish",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"files": [
 		"bundle.js"
 	],
-	"dependencies": {},
+	"dependencies": {
+		"parcel-bundler": "^1.12.4"
+	},
 	"devDependencies": {
 		"@babel/cli": "^7.7.0",
 		"@babel/core": "^7.7.0",
@@ -25,5 +26,12 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/L-Blondy/lb-lazy-images.git"
-	}
+	},
+	"keywords": [
+		"parcel",
+		"parcel-bundler",
+		"lazy",
+		"lazy load",
+		"lazy load images"
+	]
 }
