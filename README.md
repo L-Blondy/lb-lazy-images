@@ -1,7 +1,7 @@
 # lb-lazy-images
 
-Lazy load images with `Parcel-bundler`.
-Based on the `IntersectionObserver` API.
+Lazy load images with `Parcel-bundler`.  
+Based on the `IntersectionObserver` API.  
 All images will eagerload as a fallback if the IntersectionObserver API is not supported. You can however polyfill it if you wish.  
 
 ## Auto load (on Scroll)
@@ -34,7 +34,7 @@ index.html
 
 ## Manual load (on event)
 
-Just pass the target as an argument on the `loadImg` function to load the images when wanted.
+Just pass the target as an argument on the `loadImg` function to load the images on event.  
 It returns a Promise resolving with an array of the element(s) passed as argument.
 
 file.js
