@@ -27,7 +27,7 @@ index.html
 <img 
 	src="placeholder.jpg" 
 	data-src="folder/filename"
-	data-srcset=<<"folder/filename1 500w, folder/filename2 700w, ...">>
+	data-srcset="folder/filename1 500w, folder/filename2 700w, ..."
 	loadOnScroll
 />
 ```
@@ -53,7 +53,7 @@ index.html
 <img 
 	src="placeholder.jpg" 
 	data-src="folder/filename"
-	data-srcset=<<"folder/filename1 500w, folder/filename2 700w, ...">>
+	data-srcset="folder/filename1 500w, folder/filename2 700w, ..."
 />
 ```
 
