@@ -10,27 +10,27 @@ Add the `loadOnScroll` prop to the `img` tag.
 Define a `data-src` and/or `data-srcset`.  
 Call the `loadOnScroll` function to setup the IntersectionObserver.  
 
+### Note: 
+- `root` corresponds to the 'root' of the IntersectionObserver, defaults to the viewport.
+- `margin` applies on all sides of the element, defaults to 500px
+- For the `data-src` && `data-srcset` properties: path begins from `src/assets` excluded, use no file extension. Example: ~~src/assets/~~ **folder/filename** ~~.jpg~~
+
 file.js
 ```
 import { loadOnScroll } from  "lb-lazy-images"
 ...
-loadOnScroll(root=viewport, margin="500px")
+loadOnScroll(root, margin)
 ```
 
 index.html
 ```
 <img 
 	src="placeholder.jpg" 
-	data-src=<<path from "src/asset", ex="subfolder/myImage">> 
-	data-srcset=<<"path, path, path, ...">>
+	data-src="folder/filename"
+	data-srcset=<<"folder/filename1 500w, folder/filename2 700w, ...">>
 	loadOnScroll
 />
 ```
-
-### Note: 
-- 'root' corresponds to the 'root' of the IntersectionObserver, defaults to the viewport.
-- Margin applies on all sides of the element, defaults to 500px
-- For the `data-src` && `data-srcset` properties: use not file extension, path begins from `src/assets` excluded
 
 ## Manual load (on event)
 
@@ -42,8 +42,8 @@ file.js
 import { loadImg } from "lb-lazy-images"
 ...
 element.addEventListener("click", e => {
-	loadImg(<image or NodeList here>)
-		.then( images => images[0].parentNode.classList += "display"  )
+	loadImg(<img element, NodeList or Array here>)
+		.then(images => do something)
 		.then(()=> do something else)
 })
 ```
@@ -52,8 +52,8 @@ index.html
 ```
 <img 
 	src="placeholder.jpg" 
-	data-src=<<path from "src/asset", ex="subfolder/myImage">> 
-	data-srcset=<<"path width, path width, ...">>
+	data-src="folder/filename"
+	data-srcset=<<"folder/filename1 500w, folder/filename2 700w, ...">>
 />
 ```
 
