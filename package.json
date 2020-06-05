@@ -4,9 +4,9 @@
 	"description": "Lazy load images utility for Parcel-bundler",
 	"main": "bundle.js",
 	"scripts": {
+		"start": "parcel src/index.html",
 		"build": "npx babel index.js --out-file bundle.js && uglifyjs bundle.js -o bundle.js -c -m",
-		"deploy": "npm run build && npm publish",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"deploy": "npm run build && npm publish"
 	},
 	"author": "",
 	"license": "ISC",
@@ -17,10 +17,11 @@
 		"parcel-bundler": "^1.12.4"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.7.0",
-		"@babel/core": "^7.7.0",
-		"@babel/preset-env": "^7.7.0",
-		"uglify-js": "^3.6.8"
+		"@babel/cli": "^7.10.1",
+		"@babel/core": "^7.10.2",
+		"@babel/preset-env": "^7.10.2",
+		"sass": "^1.26.8",
+		"uglify-js": "^3.9.4"
 	},
 	"homepage": "https://github.com/L-Blondy/lb-lazy-images",
 	"repository": {
