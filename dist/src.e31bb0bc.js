@@ -159,7 +159,7 @@ module.exports = {
     }
   }
 };
-},{"./..\\arrow-up-solid.svg":"assets/arrow-up-solid.svg","./..\\square-regular.svg":"assets/square-regular.svg","./..\\subfolder1\\chevron-up-solid.svg":"assets/subfolder1/chevron-up-solid.svg","./..\\subfolder1\\plus-circle-solid.svg":"assets/subfolder1/plus-circle-solid.svg","./..\\subfolder1\\subfolder2\\arrow-down-solid.svg":"assets/subfolder1/subfolder2/arrow-down-solid.svg","./..\\subfolder1\\subfolder2\\chevron-down-solid.old.svg":"assets/subfolder1/subfolder2/chevron-down-solid.old.svg","./..\\subfolder1\\subfolder2\\two.svg":"assets/subfolder1/subfolder2/two.svg"}],"rawSrcFolder/loadImg.js":[function(require,module,exports) {
+},{"./..\\arrow-up-solid.svg":"assets/arrow-up-solid.svg","./..\\square-regular.svg":"assets/square-regular.svg","./..\\subfolder1\\chevron-up-solid.svg":"assets/subfolder1/chevron-up-solid.svg","./..\\subfolder1\\plus-circle-solid.svg":"assets/subfolder1/plus-circle-solid.svg","./..\\subfolder1\\subfolder2\\arrow-down-solid.svg":"assets/subfolder1/subfolder2/arrow-down-solid.svg","./..\\subfolder1\\subfolder2\\chevron-down-solid.old.svg":"assets/subfolder1/subfolder2/chevron-down-solid.old.svg","./..\\subfolder1\\subfolder2\\two.svg":"assets/subfolder1/subfolder2/two.svg"}],"rawSrc/loadImg.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -168,49 +168,79 @@ Object.defineProperty(exports, "__esModule", {
 exports.loadImg = loadImg;
 exports.loadOnScroll = loadOnScroll;
 
-var _ = _interopRequireDefault(require("../../src/assets/**/*.*"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var images = require("./../../src/assets/**/*.*");
+
+var getDictionary = function getDictionary(images) {
+  var relPath = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var pathList = {};
+
+  var _loop = function _loop(key) {
+    var value = images[key];
+    values = Object.keys(images[key]).map(function (e) {
+      return images[key][e];
+    });
+    var isImage = typeof values[0] === "string";
+    var isFolder = _typeof(values[0]) === "object";
+
+    if (isImage) {
+      pathList[relPath + key + '.' + Object.keys(value)[0]] = value[Object.keys(value)[0]];
+    } else if (isFolder) {
+      pathList = _objectSpread(_objectSpread({}, pathList), getDictionary(value, relPath + key + "/"));
+    }
+  };
+
+  for (var key in images) {
+    var values;
+
+    _loop(key);
+  }
+
+  return pathList;
+};
+
+var dictionary = getDictionary(images);
+
 var Loader =
 /*#__PURE__*/
 function () {
   function Loader(targets) {
     var obsOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var obsCallback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
 
     _classCallCheck(this, Loader);
 
     this.targets = targets;
     this.imgElements = [];
     this.obsOptions = obsOptions;
-    this.obsCallback = obsCallback;
   }
 
   _createClass(Loader, [{
-    key: "computedFilename",
-    value: function computedFilename(dataSrc) {
-      var sources = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _.default;
-      var stepsToPath = dataSrc.split('/');
-      var fileNameWithExt = stepsToPath.pop();
-      var fileNameStep = fileNameWithExt.slice(0, fileNameWithExt.indexOf('.'));
-      var extStep = fileNameWithExt.slice(fileNameWithExt.indexOf('.') + 1);
-      stepsToPath.push(fileNameStep, extStep);
-
-      try {
-        var src = stepsToPath.reduce(function (path, step) {
-          return path = path[step];
-        }, sources);
-        return src;
-      } catch (e) {
-        return dataSrc;
-      }
+    key: "getSrc",
+    value: function getSrc(dataSrc) {
+      return dictionary[dataSrc] || dataSrc;
+    }
+  }, {
+    key: "getSrcset",
+    value: function getSrcset(dataSrcset) {
+      var srcset = dataSrcset.split(',').reduce(function (srcset, current) {
+        var src = current.slice(0, current.lastIndexOf(' ')).trim();
+        var size = current.slice(current.lastIndexOf(' ') + 1);
+        return "".concat(srcset && srcset + ',', " ").concat(dictionary[src], " ").concat(size);
+      }, '');
+      return srcset;
     }
   }, {
     key: "toArray",
@@ -221,38 +251,43 @@ function () {
   }, {
     key: "attachObserver",
     value: function attachObserver() {
-      var _this2 = this;
+      var _this = this;
 
       if (!('IntersectionObserver' in window)) {
-        return this.loadAll();
+        setTimeout(function () {
+          return _this.loadAll();
+        }, 17);
+        return this;
       }
 
       var self = this;
       var _this$obsOptions = this.obsOptions,
           root = _this$obsOptions.root,
-          _this$obsOptions$marg = _this$obsOptions.margin,
-          margin = _this$obsOptions$marg === void 0 ? '200px' : _this$obsOptions$marg;
+          _this$obsOptions$root = _this$obsOptions.rootMargin,
+          rootMargin = _this$obsOptions$root === void 0 ? '500px 500px 500px 500px' : _this$obsOptions$root,
+          _this$obsOptions$thre = _this$obsOptions.threshold,
+          threshold = _this$obsOptions$thre === void 0 ? 0.01 : _this$obsOptions$thre;
       this.observer = new IntersectionObserver(cb, {
         root: root,
-        threshold: 0.01,
-        rootMargin: "".concat(margin, " ").concat(margin, " ").concat(margin, " ").concat(margin)
+        rootMargin: rootMargin,
+        threshold: threshold
       });
 
       function cb(entries) {
-        var _this = this;
+        var _this2 = this;
 
         entries.forEach(function (entry) {
           if (entry.intersectionRatio > 0) {
-            _this.unobserve(entry.target);
+            _this2.unobserve(entry.target);
 
             self.loadSingle(entry.target);
-            self.obsCallback(entry);
+            self.obsCallback && self.obsCallback(entry);
           }
         });
       }
 
       this.imgElements.forEach(function (img) {
-        return _this2.observer.observe(img);
+        return _this.observer.observe(img);
       });
       return this;
     }
@@ -261,18 +296,22 @@ function () {
     value: function loadAll() {
       var _this3 = this;
 
-      var allPromises = this.imgElements.reduce(function (allPromises, img) {
+      this.allPromises = this.imgElements.reduce(function (allPromises, img) {
         allPromises.push(_this3.loadSingle(img));
         return allPromises;
       }, []);
 
       if ("Promise" in window) {
-        return Promise.all(allPromises);
+        return Promise.all(this.allPromises);
       }
+
+      return this;
     }
   }, {
     key: "loadSingle",
     value: function loadSingle(img) {
+      var _this4 = this;
+
       var imgCached = document.createElement('IMG');
       var EM = 'Could not load <img ';
       [].slice.call(img.attributes).forEach(function (_ref) {
@@ -282,23 +321,53 @@ function () {
         if (name === 'src' || name === 'data-src' || name === 'data-srcset') return;
         imgCached.setAttribute(name, value);
       });
-      imgCached.src = this.computedFilename(img.dataset.src);
+      EM += '/>';
+      if (img.dataset.src) imgCached.src = this.getSrc(img.dataset.src);
+      if (img.dataset.srcset) imgCached.srcset = this.getSrcset(img.dataset.srcset);
+      console.log(imgCached);
 
       if (!('Promise' in window)) {
-        console.log('no promises');
-        return img.parentNode.replaceChild(imgCached, img);
+        img.parentNode.replaceChild(imgCached, img);
+        console.log('no promise');
+        this.onLoadCallback && imgCached.addEventListener('load', this.onLoadCallback);
+        this.onErrorCallback && imgCached.addEventListener('error', function (e) {
+          e.message = EM;
+
+          _this4.onErrorCallback(e);
+        });
+        return;
       }
 
       return new Promise(function (resolve, reject) {
-        imgCached.onload = function () {
+        imgCached.addEventListener('load', function (e) {
           img.parentNode.replaceChild(imgCached, img);
+          _this4.onLoadCallback && _this4.onLoadCallback(e);
           resolve(imgCached);
-        };
-
-        imgCached.onerror = function () {
-          return reject(new Error(EM + '/>'));
-        };
+        });
+        imgCached.addEventListener('error', function (e) {
+          e.message = EM;
+          _this4.onErrorCallback && _this4.onErrorCallback(e);
+          reject(e);
+        });
       });
+    }
+  }, {
+    key: "onIntersection",
+    value: function onIntersection(obsCallback) {
+      this.obsCallback = obsCallback;
+      return this;
+    }
+  }, {
+    key: "onLoad",
+    value: function onLoad(onLoadCallback) {
+      this.onLoadCallback = onLoadCallback;
+      return this;
+    }
+  }, {
+    key: "onError",
+    value: function onError(onErrorCallback) {
+      this.onErrorCallback = onErrorCallback;
+      return this;
     }
   }]);
 
@@ -311,13 +380,12 @@ function loadImg(targets) {
 
 function loadOnScroll(targets) {
   var obsOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var mode = arguments.length > 2 ? arguments[2] : undefined;
-  return new Loader(targets, obsOptions, mode).toArray().attachObserver();
+  return new Loader(targets, obsOptions).toArray().attachObserver();
 }
-},{"../../src/assets/**/*.*":"assets/**/*.*"}],"index.js":[function(require,module,exports) {
+},{"./../../src/assets/**/*.*":"assets/**/*.*"}],"index.js":[function(require,module,exports) {
 "use strict";
 
-var _loadImg = require("./rawSrcFolder/loadImg");
+var _loadImg = require("./rawSrc/loadImg");
 
 var img = document.createElement('img');
 var container = document.querySelector('.container');
@@ -326,19 +394,24 @@ img.dataset.src = 'subfolder1/subfolder2/chevron-down-solid.old.svg';
 container.appendChild(img);
 button.addEventListener('click', function () {
   (0, _loadImg.loadImg)(img).then(function (images) {
-    return console.log(images);
+    return console.log('images', images);
   }).catch(function (e) {
     return console.log('promise.all', e);
   });
 });
 var images = document.querySelectorAll('.img');
-(0, _loadImg.loadOnScroll)(images, {
+var options = {
   root: document.getElementById('root'),
-  margin: '0px'
-}, function (e) {
+  rootMargin: '0px 0px -100px 0px'
+};
+var loader = (0, _loadImg.loadOnScroll)(images, options).onIntersection(function (e) {
+  return console.log(e);
+}).onLoad(function (e) {
+  return console.log(e);
+}).onError(function (e) {
   return console.log(e);
 });
-},{"./rawSrcFolder/loadImg":"rawSrcFolder/loadImg.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./rawSrc/loadImg":"rawSrc/loadImg.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -366,7 +439,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63145" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57613" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

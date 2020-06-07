@@ -1,59 +1,69 @@
 # lb-lazy-images
 
 Lazy load utility for `Parcel-bundler`.  
-Based on the `IntersectionObserver` API.  
-All images will eagerload as a fallback if the IntersectionObserver API is not supported. You can however polyfill it if you wish.  
+Based on the `IntersectionObserver` API. All images will eagerload as a fallback if the IntersectionObserver API is not supported/polyfilled.
 
-## Auto load (on Scroll)
+# Requirements
+- parcel-bundler
 
-Add the `loadOnScroll` prop to the `img` tag.  
-Define a `data-src` and/or `data-srcset`.  
-Call the `loadOnScroll` function to setup the IntersectionObserver.  
+# usage
 
-### Note: 
-- `root` corresponds to the 'root' of the IntersectionObserver, defaults to the viewport.
-- `margin` applies on all sides of the element, defaults to 500px
-- For the `data-src` && `data-srcset` properties: path begins from `src/assets` excluded, use no file extension. Example: ~~src/assets/~~ **folder/filename** ~~.jpg~~
+**HTML**
 
-file.js
-```
-import { loadOnScroll } from  "lb-lazy-images"
-...
-loadOnScroll(root, margin)
-```
-
-index.html
+`data-src` and `data-srcset` paths start from ~~`src/assets`~~ excluded: 
 ```
 <img 
 	src="placeholder.jpg" 
-	data-src="folder/filename"
-	data-srcset="folder/filename1 500w, folder/filename2 700w, ..."
-	loadOnScroll
+	data-src="folder/filename.jpg"
+	data-srcset="folder/filename1.jpg 500w, folder/filename2.jpg 700w, ..."
 />
 ```
 
-## Manual load (on event)
-
-Just pass the target as an argument on the `loadImg` function to load the images on event.  
-It returns a Promise resolving with an array of the element(s) passed as argument.
-
-file.js
+**Javascript**
 ```
-import { loadImg } from "lb-lazy-images"
-...
-element.addEventListener("click", e => {
-	loadImg(<img element, NodeList or Array here>)
+import { loadOnScroll, loadImg } from  "lb-lazy-images"
+```
+
+Load with IntersectionObserver:
+```
+//IntersectionObserver default options
+const options= {
+	root: viewport,
+	rootMargin: '500px 500px 500px 500px',
+	threshold: 0.01
+}
+
+loadOnScroll('.query', options)
+
+. . .
+
+//add some callbacks to each image if you wish
+loadOnScroll('.query', options)
+	.onIntersection(e => console.log(e))
+	.onLoad(e => console.log(e))
+	.onError(e => console.log(e))
+```
+
+Or load with some event:
+
+```
+button.addEventListener('click', ()=>{
+
+	loadImg('.query')
 		.then(images => do something)
 		.then(()=> do something else)
+
 })
 ```
 
-index.html
+Use it with elements created with javascript:
 ```
-<img 
-	src="placeholder.jpg" 
-	data-src="folder/filename"
-	data-srcset="folder/filename1 500w, folder/filename2 700w, ..."
-/>
-```
+import { loadOnScroll } from  "lb-lazy-images"
+import src from './src/assets/myImage.svg'
 
+const img = document.createElement('IMG)
+img.src = src
+someElement.appendChild(img)
+
+loadOnScroll(img)
+```

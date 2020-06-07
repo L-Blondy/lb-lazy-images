@@ -1,4 +1,4 @@
-import { loadImg, loadOnScroll } from './rawSrcFolder/loadImg';
+import { loadImg, loadOnScroll } from './rawSrc/loadImg';
 
 const img = document.createElement('img');
 const container = document.querySelector('.container');
@@ -8,13 +8,18 @@ container.appendChild(img);
 
 button.addEventListener('click', () => {
 	loadImg(img)
-		.then(images => console.log(images))
+		.then(images => console.log('images', images))
 		.catch(e => console.log('promise.all', e));
 });
 
 const images = document.querySelectorAll('.img');
 
-loadOnScroll(images, {
+const options = {
 	root: document.getElementById('root'),
-	margin: '0px'
-}, (e) => console.log(e));
+	rootMargin: '0px 0px -100px 0px'
+};
+
+const loader = loadOnScroll(images, options)
+	.onIntersection((e) => console.log(e))
+	.onLoad((e) => console.log(e))
+	.onError((e) => console.log(e));
