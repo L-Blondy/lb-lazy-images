@@ -3,8 +3,6 @@ import LazyLoader from '_mybundle';
 
 const options = {
 	root: document.getElementById('root'),
-	rootMargin: '200px 200px 200px 200px',
-	threshold: 0.001
 };
 
 // new LazyLoader('.img')
@@ -15,32 +13,33 @@ const options = {
 
 // window.IntersectionObserver = null;
 
-// new LazyLoader('.img')
-// 	.loadWithIO(options).
+
+
 
 LazyLoader
 	.loadWithIO('.img', options)
 	.onLoad(img => console.log('onLoadCb', img))
 	.onError(img => console.log('onErrorCb', img))
-	.onAllSettled(images => console.log('allSettledCb', images))
+	.onIntersection(img => console.log('onIntersectCb', img))
 	.onVisible(img => img.classList.add('fadein'))
-	.onIntersection(img => console.log('onIntersectCb', img));
+	.onAllSettled(images => console.log('allSettledCb', images));
 
 document.querySelector('button').addEventListener('click', () => (
 	LazyLoader
 		.loadAll('.with-button')
 		.onLoad(img => img.classList.add('fadein'))
+		.onAllSettled(() => console.log('allSettled'))
 ));
 
-import sources from '../src/assets/*.*';
+// import sources from '../src/assets/*.*';
 
-const sourceMap = Object.values(sources).map(val => Object.values(val)[ 0 ]);
-const imageMap = sourceMap.map(src => {
-	const img = document.createElement('IMG');
-	img.dataset.src = src;
-	root.appendChild(img);
-	return img;
-});
-LazyLoader
-	.loadWithIO(imageMap)
-	.onVisible(img => img.classList.add('fadein'));
+// const sourceMap = Object.values(sources).map(val => Object.values(val)[ 0 ]);
+// const imageMap = sourceMap.map(src => {
+// 	const img = document.createElement('IMG');
+// 	img.dataset.src = src;
+// 	root.appendChild(img);
+// 	return img;
+// });
+// LazyLoader
+// 	.loadWithIO(imageMap)
+// 	.onVisible(img => img.classList.add('fadein'));

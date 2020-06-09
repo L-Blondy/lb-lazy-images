@@ -1,4 +1,4 @@
-# lb-lazy-images
+# lb-lazy-images v2
 
 Lazy load utility for `Parcel-bundler`.  
 Based on the `IntersectionObserver` API. If the IntersectionObserver API is not supported/polyfilled, all images will eagerload.
@@ -20,12 +20,14 @@ Based on the `IntersectionObserver` API. If the IntersectionObserver API is not 
 ```
 
 ### Load with IntersectionObserver :
+
 Basic usage :
 ```
 import LazyLoader from "lb-lazy-images";
 
 LazyLoader.loadWithIO('.selector')
 ```
+
 Customize the Observer :
 ```
 //defaults:
@@ -37,6 +39,7 @@ const options= {
 
 LazyLoader.loadWithIO('.selector', options)
 ```
+
 Add some callbacks to each image if you wish :
 ```
 LazyLoader
