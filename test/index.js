@@ -20,7 +20,6 @@ const options = {
 
 LazyLoader
 	.loadWithIO('.img', options)
-	// .loadAll('.img')
 	.onLoad(img => console.log('onLoadCb', img))
 	.onError(img => console.log('onErrorCb', img))
 	.onAllSettled(images => console.log('allSettledCb', images))
@@ -32,3 +31,16 @@ document.querySelector('button').addEventListener('click', () => (
 		.loadAll('.with-button')
 		.onLoad(img => img.classList.add('fadein'))
 ));
+
+import sources from '../src/assets/*.*';
+
+const sourceMap = Object.values(sources).map(val => Object.values(val)[ 0 ]);
+const imageMap = sourceMap.map(src => {
+	const img = document.createElement('IMG');
+	img.dataset.src = src;
+	root.appendChild(img);
+	return img;
+});
+LazyLoader
+	.loadWithIO(imageMap)
+	.onVisible(img => img.classList.add('fadein'));

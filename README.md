@@ -1,7 +1,7 @@
 # lb-lazy-images
 
 Lazy load utility for `Parcel-bundler`.  
-Based on the `IntersectionObserver` API. All images will eagerload as a fallback if the IntersectionObserver API is not supported/polyfilled.
+Based on the `IntersectionObserver` API. If the IntersectionObserver API is not supported/polyfilled, all images will eagerload.
 
 # Requirements
 - parcel-bundler
@@ -21,49 +21,72 @@ Based on the `IntersectionObserver` API. All images will eagerload as a fallback
 
 **Javascript**
 ```
-import { loadOnScroll, loadImg } from  "lb-lazy-images"
+import LazyLoader from "lb-lazy-images";
 ```
 
-Load with IntersectionObserver:
+### Load with IntersectionObserver:
 ```
-//IntersectionObserver default options
+//Basic usage
+
+LazyLoader.loadWithIO('.selector')
+```
+```
+//customize the Observer, (the following are the defaults)
+
 const options= {
 	root: viewport,
 	rootMargin: '500px 500px 500px 500px',
 	threshold: 0.01
 }
 
-loadOnScroll('.query', options)
-
-. . .
-
+LazyLoader.loadWithIO('.selector', options)
+```
+```
 //add some callbacks to each image if you wish
-loadOnScroll('.query', options)
-	.onIntersection(e => console.log(e))
-	.onLoad(e => console.log(e))
-	.onError(e => console.log(e))
+
+LazyLoader
+	.loadWithIO('.selector')
+	.onLoad( img => do something )
+	.onError( img => do something )
+	.onIntersection( img => do something )
+	.onVisible( img => img.classList.add('fadein') ) //animate here
+	.onAllSettled( images => do something )
+
 ```
 
-Or load with some event:
+### Or load with some event:
 
 ```
 button.addEventListener('click', ()=>{
 
-	loadImg('.query')
-		.then(images => do something)
-		.then(()=> do something else)
+	LazyLoader
+		.loadAll('.selector')
+		.onLoad( img => do something )
+		.onError( img => do something )
+		.onAllSettled( images => do something )
 
 })
 ```
 
-Use it with elements created with javascript:
+### Generate many lazy loaded images with javascript:
+
 ```
-import { loadOnScroll } from  "lb-lazy-images"
-import src from './src/assets/myImage.svg'
+import LazyLoader from  "lb-lazy-images"
+import sources from '../src/assets/*.*';
 
-const img = document.createElement('IMG)
-img.src = src
-someElement.appendChild(img)
+const sourceMap = Object.values(sources).map(val => (
+	Object.values(val)[ 0 ]
+));
+const imageMap = sourceMap.map(src => {
+	const img = document.createElement('IMG');
+	img.dataset.src = src;
+	//do more stuff
+	container.appendChild(img);
+	return img;
+});
 
-loadOnScroll(img)
+//Lazyload + add some nice animation:
+LazyLoader
+	.loadWithIO(imageMap)
+	.onVisible(img => img.classList.add('fadein'));
 ```
