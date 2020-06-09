@@ -117,21 +117,21 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"assets/arrow-up-solid.svg":[function(require,module,exports) {
-module.exports = "/arrow-up-solid.e093b807.svg";
-},{}],"assets/square-regular.svg":[function(require,module,exports) {
-module.exports = "/square-regular.90e12ba7.svg";
-},{}],"assets/subfolder1/chevron-up-solid.svg":[function(require,module,exports) {
-module.exports = "/chevron-up-solid.6e0e77cf.svg";
-},{}],"assets/subfolder1/plus-circle-solid.svg":[function(require,module,exports) {
-module.exports = "/plus-circle-solid.025a1dda.svg";
-},{}],"assets/subfolder1/subfolder2/arrow-down-solid.svg":[function(require,module,exports) {
-module.exports = "/arrow-down-solid.65c45ad3.svg";
-},{}],"assets/subfolder1/subfolder2/chevron-down-solid.old.svg":[function(require,module,exports) {
-module.exports = "/chevron-down-solid.old.ae62c709.svg";
-},{}],"assets/subfolder1/subfolder2/two.svg":[function(require,module,exports) {
-module.exports = "/two.12f6dca1.svg";
-},{}],"assets/**/*.*":[function(require,module,exports) {
+})({"../src/assets/arrow-up-solid.svg":[function(require,module,exports) {
+module.exports = "/arrow-up-solid.b70d0350.svg";
+},{}],"../src/assets/square-regular.svg":[function(require,module,exports) {
+module.exports = "/square-regular.0d1a2200.svg";
+},{}],"../src/assets/subfolder1/chevron-up-solid.svg":[function(require,module,exports) {
+module.exports = "/chevron-up-solid.c7ee1979.svg";
+},{}],"../src/assets/subfolder1/plus-circle-solid.svg":[function(require,module,exports) {
+module.exports = "/plus-circle-solid.bf21ed4e.svg";
+},{}],"../src/assets/subfolder1/subfolder2/arrow-down-solid.svg":[function(require,module,exports) {
+module.exports = "/arrow-down-solid.0e51ec7f.svg";
+},{}],"../src/assets/subfolder1/subfolder2/chevron-down-solid.old.svg":[function(require,module,exports) {
+module.exports = "/chevron-down-solid.old.8c0a481d.svg";
+},{}],"../src/assets/subfolder1/subfolder2/two.svg":[function(require,module,exports) {
+module.exports = "/two.2985b9d1.svg";
+},{}],"../src/assets/**/*.*":[function(require,module,exports) {
 module.exports = {
   "arrow-up-solid": {
     "svg": require("./..\\arrow-up-solid.svg")
@@ -159,13 +159,17 @@ module.exports = {
     }
   }
 };
-},{"./..\\arrow-up-solid.svg":"assets/arrow-up-solid.svg","./..\\square-regular.svg":"assets/square-regular.svg","./..\\subfolder1\\chevron-up-solid.svg":"assets/subfolder1/chevron-up-solid.svg","./..\\subfolder1\\plus-circle-solid.svg":"assets/subfolder1/plus-circle-solid.svg","./..\\subfolder1\\subfolder2\\arrow-down-solid.svg":"assets/subfolder1/subfolder2/arrow-down-solid.svg","./..\\subfolder1\\subfolder2\\chevron-down-solid.old.svg":"assets/subfolder1/subfolder2/chevron-down-solid.old.svg","./..\\subfolder1\\subfolder2\\two.svg":"assets/subfolder1/subfolder2/two.svg"}],"rawSrc/dictionary.js":[function(require,module,exports) {
+},{"./..\\arrow-up-solid.svg":"../src/assets/arrow-up-solid.svg","./..\\square-regular.svg":"../src/assets/square-regular.svg","./..\\subfolder1\\chevron-up-solid.svg":"../src/assets/subfolder1/chevron-up-solid.svg","./..\\subfolder1\\plus-circle-solid.svg":"../src/assets/subfolder1/plus-circle-solid.svg","./..\\subfolder1\\subfolder2\\arrow-down-solid.svg":"../src/assets/subfolder1/subfolder2/arrow-down-solid.svg","./..\\subfolder1\\subfolder2\\chevron-down-solid.old.svg":"../src/assets/subfolder1/subfolder2/chevron-down-solid.old.svg","./..\\subfolder1\\subfolder2\\two.svg":"../src/assets/subfolder1/subfolder2/two.svg"}],"../lib/lib/dictionary.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _ = _interopRequireDefault(require("../../src/assets/**/*.*"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -175,11 +179,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var images = require("./../../src/assets/**/*.*");
-
 var getDictionary = function getDictionary(images) {
   var relPath = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var pathList = {};
+  var dictionary = {};
 
   var _loop = function _loop(key) {
     var value = images[key];
@@ -191,9 +193,9 @@ var getDictionary = function getDictionary(images) {
 
     if (isImage) {
       var ext = Object.keys(value)[0];
-      pathList["".concat(relPath + key, ".").concat(ext)] = value[ext];
+      dictionary["".concat(relPath + key, ".").concat(ext)] = value[ext];
     } else if (isFolder) {
-      pathList = _objectSpread(_objectSpread({}, pathList), getDictionary(value, "".concat(relPath + key, "/")));
+      dictionary = _objectSpread(_objectSpread({}, dictionary), getDictionary(value, "".concat(relPath + key, "/")));
     }
   };
 
@@ -203,21 +205,75 @@ var getDictionary = function getDictionary(images) {
     _loop(key);
   }
 
-  return pathList;
+  return dictionary;
 };
 
-var _default = getDictionary(images);
+var _default = getDictionary(_.default);
 
 exports.default = _default;
-},{"./../../src/assets/**/*.*":"assets/**/*.*"}],"rawSrc/Img.js":[function(require,module,exports) {
+},{"../../src/assets/**/*.*":"../src/assets/**/*.*"}],"../lib/lib/utils.js":[function(require,module,exports) {
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
 var _dictionary = _interopRequireDefault(require("./dictionary"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var translateSrc = function translateSrc(src) {
+  return _dictionary.default[src] || src;
+};
+
+var translateSrcset = function translateSrcset(srcset) {
+  return srcset.split(',').reduce(function (srcset, current) {
+    var src = current.slice(0, current.lastIndexOf(' ')).trim();
+    var size = current.slice(current.lastIndexOf(' ') + 1);
+    return "".concat(srcset && srcset + ',', " ").concat(translateSrc(src), " ").concat(size);
+  }, '').trim();
+};
+
+var translateDataset = function translateDataset(img) {
+  var _img$dataset = img.dataset,
+      src = _img$dataset.src,
+      srcset = _img$dataset.srcset;
+  src && (img.dataset.src = translateSrc(src));
+  srcset && (img.dataset.srcset = translateSrcset(srcset));
+};
+
+var toArray = function toArray(targets) {
+  if (typeof targets === 'string') targets = document.querySelectorAll(targets);
+  if (!targets.length) return [targets];
+  return [].slice.call(targets);
+};
+
+var preload = function preload(img) {
+  var preloader = img.cloneNode(false);
+  var _preloader$dataset = preloader.dataset,
+      src = _preloader$dataset.src,
+      srcset = _preloader$dataset.srcset;
+
+  if (src) {
+    preloader.src = src;
+    preloader.removeAttribute('data-src');
+  }
+
+  if (srcset) {
+    preloader.srcset = srcset;
+    preloader.removeAttribute('data-srcset');
+  }
+
+  return preloader;
+};
+
+module.exports = {
+  translateDataset: translateDataset,
+  toArray: toArray,
+  preload: preload
+};
+},{"./dictionary":"../lib/lib/dictionary.js"}],"../lib/lib/LazyLoader.js":[function(require,module,exports) {
+"use strict";
+
+var _ = _interopRequireDefault(require("../../src/assets/**/*.*"));
+
+var _utils = require("./utils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -233,169 +289,187 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-console.log(_dictionary.default);
-
-var Images =
+var LazyLoader =
 /*#__PURE__*/
 function () {
-  function Images(targets) {
-    _classCallCheck(this, Images);
+  function LazyLoader(images) {
+    _classCallCheck(this, LazyLoader);
 
-    this.targets = this._getTargets(targets);
-    this.cache = [];
+    this.images = (0, _utils.toArray)(images);
+    this.settledCountdown = this.images.length;
+    this.preloaders = [];
+    this.hasObservers = false;
+
+    this._init();
   }
 
-  _createClass(Images, [{
-    key: "_getTargets",
-    value: function _getTargets(targets) {
-      if (typeof targets === 'string') targets = document.querySelectorAll(targets);
-      if (!targets.length) return [targets];
-      return [].slice.call(targets);
+  _createClass(LazyLoader, [{
+    key: "_init",
+    value: function _init() {
+      this.images.forEach(_utils.translateDataset);
     }
   }, {
-    key: "_translateDataset",
-    value: function _translateDataset(img) {
-      var _img$dataset = img.dataset,
-          src = _img$dataset.src,
-          srcset = _img$dataset.srcset;
-      if (src) img.dataset.src = _dictionary.default[src] || src;
-      if (srcset) img.dataset.srcset = srcset.split(',').reduce(function (srcset, current) {
-        var src = current.slice(0, current.lastIndexOf(' ')).trim();
-        var size = current.slice(current.lastIndexOf(' ') + 1);
-        console.log(src, size);
-        return "".concat(srcset && srcset + ',', " ").concat(_dictionary.default[src] || src, " ").concat(size);
-      }, '');
-    }
-  }, {
-    key: "_cacheImg",
-    value: function _cacheImg(img) {
-      var el = document.createElement('img');
-      [].slice.call(img.attributes).forEach(function (_ref) {
-        var name = _ref.name,
-            value = _ref.value;
-        if (name === 'src') return;
-        if (name === 'data-src') return el.src = value;
-        if (name === 'data-srcset') return el.srcset = value;
-        el.setAttribute(name, value);
-      });
-      return el;
+    key: "_countDown",
+    value: function _countDown() {
+      this.settledCountdown--;
+      !this.settledCountdown && this.onAllSettledCb && this.onAllSettledCb(this.preloaders);
     }
   }, {
     key: "_attachListeners",
-    value: function _attachListeners(target, cached) {
-      cached.addEventListener('load', function (e) {
-        target.parentNode.replaceChild(cached, target);
-      });
-      cached.addEventListener('error', function (e) {
-        target.parentNode.replaceChild(cached, target);
-        console.log(e);
-      });
-    }
-  }, {
-    key: "loadAll",
-    value: function loadAll() {
+    value: function _attachListeners(img, preloader) {
       var _this = this;
 
-      this.targets.forEach(function (target) {
-        return _this._loadOne(target);
+      preloader.addEventListener('load', function (e) {
+        img.parentNode && img.parentNode.replaceChild(preloader, img);
+        _this.onLoadCb && _this.onLoadCb(e);
+
+        _this._countDown();
       });
-      return this;
-    }
-  }, {
-    key: "_loadOne",
-    value: function _loadOne(target) {
-      this._translateDataset(target);
+      preloader.addEventListener('error', function (e) {
+        img.parentNode && img.parentNode.replaceChild(preloader, img);
+        _this.onErrorCb && _this.onErrorCb(e);
 
-      var cached = this._cacheImg(target);
-
-      this._attachListeners(target, cached);
+        _this._countDown();
+      });
     }
   }, {
-    key: "_getWithMarginObserver",
-    value: function _getWithMarginObserver(onIntersection, options) {
-      var defaultOptions = {
-        rootMargin: '500px 500px 500px 500px',
-        threshold: 0.01
-      };
-      options = _objectSpread(_objectSpread({}, defaultOptions), options);
-      return new IntersectionObserver(onIntersection, options);
-    }
-  }, {
-    key: "_getWithoutMarginObserver",
-    value: function _getWithoutMarginObserver(onVisible, options) {
+    key: "_setObservers",
+    value: function _setObservers() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       options = {
         root: options.root,
-        threshold: 0.01
+        rootMargin: options.rootMargin || '500px 500px 500px 500px',
+        threshold: options.threshold || 0.01
       };
-      console.log(options);
-      return new IntersectionObserver(onVisible, options);
-    }
-  }, {
-    key: "loadOnIntersection",
-    value: function loadOnIntersection() {
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      if (!('IntersectionObserver' in window)) return this.loadAll();
-
-      var withMarginObserver = this._getWithMarginObserver(onIntersection, options);
-
-      var withoutMarginObserver = this._getWithoutMarginObserver(onVisible, options);
-
+      this.intersectObs = new IntersectionObserver(intersectCb, options);
+      this.visibleObs = new IntersectionObserver(visibleCb, _objectSpread(_objectSpread({}, options), {}, {
+        rootMargin: '0px 0px 0px 0px'
+      }));
       var that = this;
 
-      function onIntersection(entries) {
+      function intersectCb(entries) {
         var _this2 = this;
 
         entries.forEach(function (e) {
           if (!e.intersectionRatio) return;
+          var preloader = (0, _utils.preload)(e.target);
 
-          that._loadOne(e.target);
+          that._attachListeners(e.target, preloader);
 
-          console.log('intersecting');
-          console.log(_this2);
+          that.visibleObs.observe(preloader);
+          that.preloaders.push(preloader);
+          that.onIntersectCb && that.onIntersectCb(e);
 
           _this2.unobserve(e.target);
         });
       }
 
-      function onVisible(entries) {
+      function visibleCb(entries) {
         var _this3 = this;
 
         entries.forEach(function (e) {
-          // if (!e.intersectionRatio) return;
-          console.log('visible');
-          console.log(_this3); // this.unobserve(e.target);
+          if (!e.intersectionRatio) return;
+          that.onVisibleCb && that.onVisibleCb(e);
+
+          _this3.unobserve(e.target);
         });
       }
 
-      this.targets.forEach(function (target) {
-        withMarginObserver.observe(target);
-        withoutMarginObserver.observe(target);
+      this.hasObservers = true;
+      return this;
+    }
+  }, {
+    key: "loadAll",
+    value: function loadAll() {
+      var _this4 = this;
+
+      this.images.forEach(function (img) {
+        var preloader = (0, _utils.preload)(img);
+
+        _this4.preloaders.push(preloader);
+
+        _this4._attachListeners(img, preloader);
       });
+      return this;
+    }
+  }, {
+    key: "loadWithIO",
+    value: function loadWithIO() {
+      var _this5 = this;
+
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      this._setObservers(options);
+
+      this.images.forEach(function (img) {
+        _this5.intersectObs.observe(img);
+      });
+      return this;
+    }
+  }, {
+    key: "onLoad",
+    value: function onLoad(cb) {
+      this.onLoadCb = cb;
+      return this;
+    }
+  }, {
+    key: "onError",
+    value: function onError(cb) {
+      this.onErrorCb = cb;
+      return this;
+    }
+  }, {
+    key: "onAllSettled",
+    value: function onAllSettled(cb) {
+      this.onAllSettledCb = cb;
+      return this;
+    }
+  }, {
+    key: "onVisible",
+    value: function onVisible(cb) {
+      this.onVisibleCb = cb;
+      return this;
+    }
+  }, {
+    key: "onIntersect",
+    value: function onIntersect(cb) {
+      this.onIntersectCb = cb;
       return this;
     }
   }]);
 
-  return Images;
+  return LazyLoader;
 }();
 
-function load(targets) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  // return new Images(targets, options).loadAll();
-  return new Images(targets).loadOnIntersection(options);
-}
+var options = {
+  root: document.getElementById('root'),
+  rootMargin: '200px 200px 200px 200px',
+  threshold: 0.001
+};
+var test = new LazyLoader('img'); // test
+// 	.loadAll()
+// 	.onLoad((e) => console.log('onLoadCb'))
+// 	.onError((e) => console.log('onErrorCb'))
+// 	.onAllSettled(() => console.log('allSettledCb'));
 
-load('.img', {
-  root: document.getElementById('root')
+test.loadWithIO(options).onLoad(function (e) {
+  return console.log('onLoadCb');
+}).onError(function (e) {
+  return console.log('onErrorCb');
+}).onAllSettled(function () {
+  return console.log('allSettledCb');
+}).onVisible(function () {
+  return console.log('onVisibleCb');
+}).onIntersect(function () {
+  return console.log('onIntersectCb');
 });
-var _default = Images;
-exports.default = _default;
-},{"./dictionary":"rawSrc/dictionary.js"}],"index.js":[function(require,module,exports) {
+},{"../../src/assets/**/*.*":"../src/assets/**/*.*","./utils":"../lib/lib/utils.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
-var _Img = _interopRequireDefault(require("./rawSrc/Img"));
+var _LazyLoader = _interopRequireDefault(require("../lib/lib/LazyLoader"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./rawSrc/Img":"rawSrc/Img.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../lib/lib/LazyLoader":"../lib/lib/LazyLoader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -423,7 +497,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49838" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49835" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -600,4 +674,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/src.e31bb0bc.js.map
+//# sourceMappingURL=/test.e31bb0bc.js.map

@@ -4,7 +4,7 @@
 	"description": "Lazy load images utility for Parcel-bundler",
 	"main": "bundle.js",
 	"scripts": {
-		"start": "parcel src/index.html",
+		"start": "parcel test/index.html",
 		"build": "npx babel index.js --out-file bundle.js && uglifyjs bundle.js -o bundle.js -c -m",
 		"build:v2": "rm -rf dist && npx babel src/rawSrc/loadImg.js --out-file bundle.js && uglifyjs bundle.js -o bundle.js -c -m",
 		"deploy": "npm run build && npm publish"
