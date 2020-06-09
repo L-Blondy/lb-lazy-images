@@ -24,12 +24,12 @@ Based on the `IntersectionObserver` API. If the IntersectionObserver API is not 
 import LazyLoader from "lb-lazy-images";
 ```
 
-### Load with IntersectionObserver:
-Basic usage:
+### Load with IntersectionObserver :
+Basic usage :
 ```
 LazyLoader.loadWithIO('.selector')
 ```
-Customize the Observer:
+Customize the Observer :
 ```
 //defaults:
 const options= {
@@ -40,7 +40,7 @@ const options= {
 
 LazyLoader.loadWithIO('.selector', options)
 ```
-Add some callbacks to each image if you wish:
+Add some callbacks to each image if you wish :
 ```
 LazyLoader
 	.loadWithIO('.selector')
@@ -52,7 +52,7 @@ LazyLoader
 
 ```
 
-### Or load with some event:
+### Or load with some event :
 
 ```
 button.addEventListener('click', ()=>{
@@ -66,7 +66,7 @@ button.addEventListener('click', ()=>{
 })
 ```
 
-### Generate many lazy loaded images with javascript:
+### Generate many lazy loaded images with javascript :
 
 ```
 import LazyLoader from  "lb-lazy-images"
