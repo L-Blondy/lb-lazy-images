@@ -5,8 +5,7 @@
 	"main": "bundle.js",
 	"scripts": {
 		"start": "parcel test/index.html",
-		"build": "npx babel index.js --out-file bundle.js && uglifyjs bundle.js -o bundle.js -c -m",
-		"build:v2": "rm -rf dist && npx babel src/rawSrc/loadImg.js --out-file bundle.js && uglifyjs bundle.js -o bundle.js -c -m",
+		"build": "npx babel lib/lib/_toBundle.js --out-file bundle.js && uglifyjs bundle.js -o bundle.js -c -m && copyfiles bundle.js node_modules/_mybundle",
 		"deploy": "npm run build && npm publish"
 	},
 	"author": "",
@@ -31,6 +30,7 @@
 	},
 	"keywords": [
 		"lazy load images",
+		"lazy load image",
 		"lazy load",
 		"lazy",
 		"parcel",

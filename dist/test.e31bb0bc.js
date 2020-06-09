@@ -159,317 +159,48 @@ module.exports = {
     }
   }
 };
-},{"./..\\arrow-up-solid.svg":"../src/assets/arrow-up-solid.svg","./..\\square-regular.svg":"../src/assets/square-regular.svg","./..\\subfolder1\\chevron-up-solid.svg":"../src/assets/subfolder1/chevron-up-solid.svg","./..\\subfolder1\\plus-circle-solid.svg":"../src/assets/subfolder1/plus-circle-solid.svg","./..\\subfolder1\\subfolder2\\arrow-down-solid.svg":"../src/assets/subfolder1/subfolder2/arrow-down-solid.svg","./..\\subfolder1\\subfolder2\\chevron-down-solid.old.svg":"../src/assets/subfolder1/subfolder2/chevron-down-solid.old.svg","./..\\subfolder1\\subfolder2\\two.svg":"../src/assets/subfolder1/subfolder2/two.svg"}],"../lib/lib/dictionary.js":[function(require,module,exports) {
+},{"./..\\arrow-up-solid.svg":"../src/assets/arrow-up-solid.svg","./..\\square-regular.svg":"../src/assets/square-regular.svg","./..\\subfolder1\\chevron-up-solid.svg":"../src/assets/subfolder1/chevron-up-solid.svg","./..\\subfolder1\\plus-circle-solid.svg":"../src/assets/subfolder1/plus-circle-solid.svg","./..\\subfolder1\\subfolder2\\arrow-down-solid.svg":"../src/assets/subfolder1/subfolder2/arrow-down-solid.svg","./..\\subfolder1\\subfolder2\\chevron-down-solid.old.svg":"../src/assets/subfolder1/subfolder2/chevron-down-solid.old.svg","./..\\subfolder1\\subfolder2\\two.svg":"../src/assets/subfolder1/subfolder2/two.svg"}],"../node_modules/_mybundle/bundle.js":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var _=_interopRequireDefault(require("../../src/assets/**/*.*"));function _interopRequireDefault(t){return t&&t.__esModule?t:{default:t}}function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function _defineProperties(t,e){for(var r=0;r<e.length;r++){var n=e[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}function _createClass(t,e,r){return e&&_defineProperties(t.prototype,e),r&&_defineProperties(t,r),t}function ownKeys(e,t){var r,n=Object.keys(e);return Object.getOwnPropertySymbols&&(r=Object.getOwnPropertySymbols(e),t&&(r=r.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),n.push.apply(n,r)),n}function _objectSpread(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?ownKeys(Object(r),!0).forEach(function(t){_defineProperty(e,t,r[t])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):ownKeys(Object(r)).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t))})}return e}function _defineProperty(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function _typeof(t){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var getDictionary=function s(i,t){var a,c=1<arguments.length&&void 0!==t?t:"",l={};for(var e in i){!function(e){var t,r=i[e],n="string"==typeof(a=Object.keys(i[e]).map(function(t){return i[e][t]}))[0],o="object"===_typeof(a[0]);n?(t=Object.keys(r)[0],l["".concat(c+e,".").concat(t)]=r[t]):o&&(l=_objectSpread(_objectSpread({},l),s(r,"".concat(c+e,"/"))))}(e)}return l},dictionary=getDictionary(_.default),translateSrc=function(t){return dictionary[t]||t},translateSrcset=function(t){return t.split(",").reduce(function(t,e){var r=e.slice(0,e.lastIndexOf(" ")).trim(),n=e.slice(e.lastIndexOf(" ")+1);return"".concat(t&&t+","," ").concat(translateSrc(r)," ").concat(n)},"").trim()},translateDataset=function(t){var e=t.dataset,r=e.src,n=e.srcset;r&&(t.dataset.src=translateSrc(r)),n&&(t.dataset.srcset=translateSrcset(n))},toArray=function(t){return"string"==typeof t&&(t=document.querySelectorAll(t)),t.length?[].slice.call(t):[t]},preload=function(t){var e=t.cloneNode(!1),r=e.dataset,n=r.src,o=r.srcset;return n&&(e.src=n),o&&(e.srcset=o),e};function display(t){t.dataset.src&&(t.src=t.dataset.src),t.dataset.srcset&&(t.srcset=t.dataset.srcset),t.removeAttribute("data-src"),t.removeAttribute("data-srcset")}var LazyLoader=function(){function r(t){_classCallCheck(this,r),this.images=toArray(t),this.settledCountdown=this.images.length,this.hasObservers=!1,this.onLoadCb=this.onErrorCb=this.onIntersectCb=this.onVisibleCb=function(){},this._init()}return _createClass(r,[{key:"_init",value:function(){this.images.forEach(translateDataset)}},{key:"_countDown",value:function(){this.settledCountdown--,!this.settledCountdown&&this.onAllSettledCb&&this.onAllSettledCb(this.images)}},{key:"_attachListeners",value:function(e,t){var r=this;t.addEventListener("load",function(t){display(e),r.onLoadCb(e),window.IntersectionObserver||(r.onIntersectCb(e),r.onVisibleCb(e)),r._countDown()}),t.addEventListener("error",function(t){display(e),r.onErrorCb(e),window.IntersectionObserver||(r.onIntersectCb(e),r.onVisibleCb(e)),r._countDown()})}},{key:"_setObservers",value:function(t){var e={root:(e=0<arguments.length&&void 0!==t?t:{}).root,rootMargin:e.rootMargin||"500px 500px 500px 500px",threshold:e.threshold||.01};this.intersectObs=new IntersectionObserver(function(t){var r=this;t.forEach(function(t){var e;t.intersectionRatio&&(e=preload(t.target),n._attachListeners(t.target,e),n.onIntersectCb(t.target),n.visibleObs.observe(t.target),r.unobserve(t.target))})},e),this.visibleObs=new IntersectionObserver(function(t){var e=this;t.forEach(function(t){t.intersectionRatio&&(n.onVisibleCb(t.target),e.unobserve(t.target))})},_objectSpread(_objectSpread({},e),{},{rootMargin:"0px 0px 0px 0px"}));var n=this;return this.hasObservers=!0,this}},{key:"loadAll",value:function(){var r=this;return this.images.forEach(function(t){var e=preload(t);r._attachListeners(t,e)}),this}},{key:"loadWithIO",value:function(t){var e=this,r=0<arguments.length&&void 0!==t?t:{};return window.IntersectionObserver?(this._setObservers(r),this.images.forEach(function(t){e.intersectObs.observe(t)}),this):this.loadAll()}},{key:"onLoad",value:function(t){return this.onLoadCb=t,this}},{key:"onError",value:function(t){return this.onErrorCb=t,this}},{key:"onAllSettled",value:function(t){return this.onAllSettledCb=t,this}},{key:"onVisible",value:function(t){return this.onVisibleCb=t,this}},{key:"onIntersection",value:function(t){return this.onIntersectCb=t,this}}],[{key:"loadWithIO",value:function(t,e){return new r(t).loadWithIO(e)}},{key:"loadAll",value:function(t){return new r(t).loadAll()}}]),r}(),_default=LazyLoader;exports.default=LazyLoader;
+},{"../../src/assets/**/*.*":"../src/assets/**/*.*"}],"index.js":[function(require,module,exports) {
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _ = _interopRequireDefault(require("../../src/assets/**/*.*"));
+var _mybundle = _interopRequireDefault(require("_mybundle"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-var getDictionary = function getDictionary(images) {
-  var relPath = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var dictionary = {};
-
-  var _loop = function _loop(key) {
-    var value = images[key];
-    values = Object.keys(images[key]).map(function (e) {
-      return images[key][e];
-    });
-    var isImage = typeof values[0] === "string";
-    var isFolder = _typeof(values[0]) === "object";
-
-    if (isImage) {
-      var ext = Object.keys(value)[0];
-      dictionary["".concat(relPath + key, ".").concat(ext)] = value[ext];
-    } else if (isFolder) {
-      dictionary = _objectSpread(_objectSpread({}, dictionary), getDictionary(value, "".concat(relPath + key, "/")));
-    }
-  };
-
-  for (var key in images) {
-    var values;
-
-    _loop(key);
-  }
-
-  return dictionary;
-};
-
-var _default = getDictionary(_.default);
-
-exports.default = _default;
-},{"../../src/assets/**/*.*":"../src/assets/**/*.*"}],"../lib/lib/utils.js":[function(require,module,exports) {
-"use strict";
-
-var _dictionary = _interopRequireDefault(require("./dictionary"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var translateSrc = function translateSrc(src) {
-  return _dictionary.default[src] || src;
-};
-
-var translateSrcset = function translateSrcset(srcset) {
-  return srcset.split(',').reduce(function (srcset, current) {
-    var src = current.slice(0, current.lastIndexOf(' ')).trim();
-    var size = current.slice(current.lastIndexOf(' ') + 1);
-    return "".concat(srcset && srcset + ',', " ").concat(translateSrc(src), " ").concat(size);
-  }, '').trim();
-};
-
-var translateDataset = function translateDataset(img) {
-  var _img$dataset = img.dataset,
-      src = _img$dataset.src,
-      srcset = _img$dataset.srcset;
-  src && (img.dataset.src = translateSrc(src));
-  srcset && (img.dataset.srcset = translateSrcset(srcset));
-};
-
-var toArray = function toArray(targets) {
-  if (typeof targets === 'string') targets = document.querySelectorAll(targets);
-  if (!targets.length) return [targets];
-  return [].slice.call(targets);
-};
-
-var preload = function preload(img) {
-  var preloader = img.cloneNode(false);
-  var _preloader$dataset = preloader.dataset,
-      src = _preloader$dataset.src,
-      srcset = _preloader$dataset.srcset;
-
-  if (src) {
-    preloader.src = src;
-    preloader.removeAttribute('data-src');
-  }
-
-  if (srcset) {
-    preloader.srcset = srcset;
-    preloader.removeAttribute('data-srcset');
-  }
-
-  return preloader;
-};
-
-module.exports = {
-  translateDataset: translateDataset,
-  toArray: toArray,
-  preload: preload
-};
-},{"./dictionary":"../lib/lib/dictionary.js"}],"../lib/lib/LazyLoader.js":[function(require,module,exports) {
-"use strict";
-
-var _ = _interopRequireDefault(require("../../src/assets/**/*.*"));
-
-var _utils = require("./utils");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var LazyLoader =
-/*#__PURE__*/
-function () {
-  function LazyLoader(images) {
-    _classCallCheck(this, LazyLoader);
-
-    this.images = (0, _utils.toArray)(images);
-    this.settledCountdown = this.images.length;
-    this.preloaders = [];
-    this.hasObservers = false;
-
-    this._init();
-  }
-
-  _createClass(LazyLoader, [{
-    key: "_init",
-    value: function _init() {
-      this.images.forEach(_utils.translateDataset);
-    }
-  }, {
-    key: "_countDown",
-    value: function _countDown() {
-      this.settledCountdown--;
-      !this.settledCountdown && this.onAllSettledCb && this.onAllSettledCb(this.preloaders);
-    }
-  }, {
-    key: "_attachListeners",
-    value: function _attachListeners(img, preloader) {
-      var _this = this;
-
-      preloader.addEventListener('load', function (e) {
-        img.parentNode && img.parentNode.replaceChild(preloader, img);
-        _this.onLoadCb && _this.onLoadCb(e);
-
-        _this._countDown();
-      });
-      preloader.addEventListener('error', function (e) {
-        img.parentNode && img.parentNode.replaceChild(preloader, img);
-        _this.onErrorCb && _this.onErrorCb(e);
-
-        _this._countDown();
-      });
-    }
-  }, {
-    key: "_setObservers",
-    value: function _setObservers() {
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      options = {
-        root: options.root,
-        rootMargin: options.rootMargin || '500px 500px 500px 500px',
-        threshold: options.threshold || 0.01
-      };
-      this.intersectObs = new IntersectionObserver(intersectCb, options);
-      this.visibleObs = new IntersectionObserver(visibleCb, _objectSpread(_objectSpread({}, options), {}, {
-        rootMargin: '0px 0px 0px 0px'
-      }));
-      var that = this;
-
-      function intersectCb(entries) {
-        var _this2 = this;
-
-        entries.forEach(function (e) {
-          if (!e.intersectionRatio) return;
-          var preloader = (0, _utils.preload)(e.target);
-
-          that._attachListeners(e.target, preloader);
-
-          that.visibleObs.observe(preloader);
-          that.preloaders.push(preloader);
-          that.onIntersectCb && that.onIntersectCb(e);
-
-          _this2.unobserve(e.target);
-        });
-      }
-
-      function visibleCb(entries) {
-        var _this3 = this;
-
-        entries.forEach(function (e) {
-          if (!e.intersectionRatio) return;
-          that.onVisibleCb && that.onVisibleCb(e);
-
-          _this3.unobserve(e.target);
-        });
-      }
-
-      this.hasObservers = true;
-      return this;
-    }
-  }, {
-    key: "loadAll",
-    value: function loadAll() {
-      var _this4 = this;
-
-      this.images.forEach(function (img) {
-        var preloader = (0, _utils.preload)(img);
-
-        _this4.preloaders.push(preloader);
-
-        _this4._attachListeners(img, preloader);
-      });
-      return this;
-    }
-  }, {
-    key: "loadWithIO",
-    value: function loadWithIO() {
-      var _this5 = this;
-
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      this._setObservers(options);
-
-      this.images.forEach(function (img) {
-        _this5.intersectObs.observe(img);
-      });
-      return this;
-    }
-  }, {
-    key: "onLoad",
-    value: function onLoad(cb) {
-      this.onLoadCb = cb;
-      return this;
-    }
-  }, {
-    key: "onError",
-    value: function onError(cb) {
-      this.onErrorCb = cb;
-      return this;
-    }
-  }, {
-    key: "onAllSettled",
-    value: function onAllSettled(cb) {
-      this.onAllSettledCb = cb;
-      return this;
-    }
-  }, {
-    key: "onVisible",
-    value: function onVisible(cb) {
-      this.onVisibleCb = cb;
-      return this;
-    }
-  }, {
-    key: "onIntersect",
-    value: function onIntersect(cb) {
-      this.onIntersectCb = cb;
-      return this;
-    }
-  }]);
-
-  return LazyLoader;
-}();
-
+// import LazyLoader from '../lib/lib/LazyLoader';
 var options = {
   root: document.getElementById('root'),
   rootMargin: '200px 200px 200px 200px',
   threshold: 0.001
-};
-var test = new LazyLoader('img'); // test
+}; // new LazyLoader('.img')
 // 	.loadAll()
 // 	.onLoad((e) => console.log('onLoadCb'))
 // 	.onError((e) => console.log('onErrorCb'))
 // 	.onAllSettled(() => console.log('allSettledCb'));
+// window.IntersectionObserver = null;
+// new LazyLoader('.img')
+// 	.loadWithIO(options).
 
-test.loadWithIO(options).onLoad(function (e) {
-  return console.log('onLoadCb');
-}).onError(function (e) {
-  return console.log('onErrorCb');
-}).onAllSettled(function () {
-  return console.log('allSettledCb');
-}).onVisible(function () {
-  return console.log('onVisibleCb');
-}).onIntersect(function () {
-  return console.log('onIntersectCb');
+_mybundle.default.loadWithIO('.img', options) // .loadAll('.img')
+.onLoad(function (img) {
+  return console.log('onLoadCb', img);
+}).onError(function (img) {
+  return console.log('onErrorCb', img);
+}).onAllSettled(function (images) {
+  return console.log('allSettledCb', images);
+}).onVisible(function (img) {
+  return img.classList.add('fadein');
+}).onIntersection(function (img) {
+  return console.log('onIntersectCb', img);
 });
-},{"../../src/assets/**/*.*":"../src/assets/**/*.*","./utils":"../lib/lib/utils.js"}],"index.js":[function(require,module,exports) {
-"use strict";
 
-var _LazyLoader = _interopRequireDefault(require("../lib/lib/LazyLoader"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"../lib/lib/LazyLoader":"../lib/lib/LazyLoader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+document.querySelector('button').addEventListener('click', function () {
+  return _mybundle.default.loadAll('.with-button').onLoad(function (img) {
+    return img.classList.add('fadein');
+  });
+});
+},{"_mybundle":"../node_modules/_mybundle/bundle.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -497,7 +228,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49835" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64145" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

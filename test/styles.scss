@@ -16,6 +16,15 @@
 img {
     height: 50px;
     width: 50px;
+    opacity: 0.2;
+    transform: translateX(50px);
+    outline: 2px solid green;
+    transition: opacity 1000ms, transform 1000ms;
+}
+
+.fadein {
+    transform: translateX(0);
+    opacity: 1;
 }
 
 #root {

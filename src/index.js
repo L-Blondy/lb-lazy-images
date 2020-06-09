@@ -1,1 +1,0 @@
-import Img from './rawSrc/Img'
