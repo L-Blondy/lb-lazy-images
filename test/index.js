@@ -1,4 +1,5 @@
-import LazyLoader from '_mybundle';
+import LazyLoader from '../bundle';
+// import LazyLoader from '_mybundle';
 // import LazyLoader from '../lib/lib/LazyLoader';
 
 const options = {

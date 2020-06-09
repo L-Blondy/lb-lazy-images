@@ -1,6 +1,6 @@
 {
 	"name": "lb-lazy-images",
-	"version": "2.0.0",
+	"version": "2.0.2",
 	"description": "Lazy load images utility for Parcel-bundler",
 	"main": "bundle.js",
 	"scripts": {
@@ -13,7 +13,7 @@
 	"files": [
 		"bundle.js"
 	],
-	"dependencies": {
+	"peerDependencies": {
 		"parcel-bundler": "^1.12.4"
 	},
 	"devDependencies": {

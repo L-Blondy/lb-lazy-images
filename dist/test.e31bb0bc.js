@@ -117,57 +117,247 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../src/assets/square-regular.svg":[function(require,module,exports) {
-module.exports = "/square-regular.0d1a2200.svg";
-},{}],"../src/assets/arrow-up-solid.svg":[function(require,module,exports) {
-module.exports = "/arrow-up-solid.b70d0350.svg";
-},{}],"../src/assets/subfolder1/chevron-up-solid.svg":[function(require,module,exports) {
-module.exports = "/chevron-up-solid.c7ee1979.svg";
-},{}],"../src/assets/subfolder1/plus-circle-solid.svg":[function(require,module,exports) {
-module.exports = "/plus-circle-solid.bf21ed4e.svg";
-},{}],"../src/assets/subfolder1/subfolder2/arrow-down-solid.svg":[function(require,module,exports) {
-module.exports = "/arrow-down-solid.0e51ec7f.svg";
-},{}],"../src/assets/subfolder1/subfolder2/chevron-down-solid.old.svg":[function(require,module,exports) {
-module.exports = "/chevron-down-solid.old.8c0a481d.svg";
-},{}],"../src/assets/subfolder1/subfolder2/two.svg":[function(require,module,exports) {
-module.exports = "/two.2985b9d1.svg";
-},{}],"../src/assets/**/*.*":[function(require,module,exports) {
-module.exports = {
-  "square-regular": {
-    "svg": require("./..\\square-regular.svg")
-  },
-  "arrow-up-solid": {
-    "svg": require("./..\\arrow-up-solid.svg")
-  },
-  "subfolder1": {
-    "chevron-up-solid": {
-      "svg": require("./..\\subfolder1\\chevron-up-solid.svg")
-    },
-    "plus-circle-solid": {
-      "svg": require("./..\\subfolder1\\plus-circle-solid.svg")
-    },
-    "subfolder2": {
-      "arrow-down-solid": {
-        "svg": require("./..\\subfolder1\\subfolder2\\arrow-down-solid.svg")
-      },
-      "chevron-down-solid": {
-        "old.svg": require("./..\\subfolder1\\subfolder2\\chevron-down-solid.old.svg")
-      },
-      "two": {
-        "svg": require("./..\\subfolder1\\subfolder2\\two.svg")
-      }
-    }
-  }
-};
-},{"./..\\square-regular.svg":"../src/assets/square-regular.svg","./..\\arrow-up-solid.svg":"../src/assets/arrow-up-solid.svg","./..\\subfolder1\\chevron-up-solid.svg":"../src/assets/subfolder1/chevron-up-solid.svg","./..\\subfolder1\\plus-circle-solid.svg":"../src/assets/subfolder1/plus-circle-solid.svg","./..\\subfolder1\\subfolder2\\arrow-down-solid.svg":"../src/assets/subfolder1/subfolder2/arrow-down-solid.svg","./..\\subfolder1\\subfolder2\\chevron-down-solid.old.svg":"../src/assets/subfolder1/subfolder2/chevron-down-solid.old.svg","./..\\subfolder1\\subfolder2\\two.svg":"../src/assets/subfolder1/subfolder2/two.svg"}],"../node_modules/_mybundle/bundle.js":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var _=_interopRequireDefault(require("../../src/assets/**/*.*"));function _interopRequireDefault(t){return t&&t.__esModule?t:{default:t}}function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function _defineProperties(t,e){for(var r=0;r<e.length;r++){var n=e[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}function _createClass(t,e,r){return e&&_defineProperties(t.prototype,e),r&&_defineProperties(t,r),t}function ownKeys(e,t){var r,n=Object.keys(e);return Object.getOwnPropertySymbols&&(r=Object.getOwnPropertySymbols(e),t&&(r=r.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),n.push.apply(n,r)),n}function _objectSpread(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?ownKeys(Object(r),!0).forEach(function(t){_defineProperty(e,t,r[t])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):ownKeys(Object(r)).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t))})}return e}function _defineProperty(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}function _typeof(t){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var getDictionary=function s(i,t){var a,c=1<arguments.length&&void 0!==t?t:"",l={};for(var e in i){!function(e){var t,r=i[e],n="string"==typeof(a=Object.keys(i[e]).map(function(t){return i[e][t]}))[0],o="object"===_typeof(a[0]);n?(t=Object.keys(r)[0],l["".concat(c+e,".").concat(t)]=r[t]):o&&(l=_objectSpread(_objectSpread({},l),s(r,"".concat(c+e,"/"))))}(e)}return l},dictionary=getDictionary(_.default),translateSrc=function(t){return dictionary[t]||t},translateSrcset=function(t){return t.split(",").reduce(function(t,e){var r=e.slice(0,e.lastIndexOf(" ")).trim(),n=e.slice(e.lastIndexOf(" ")+1);return"".concat(t&&t+","," ").concat(translateSrc(r)," ").concat(n)},"").trim()},translateDataset=function(t){var e=t.dataset,r=e.src,n=e.srcset;r&&(t.dataset.src=translateSrc(r)),n&&(t.dataset.srcset=translateSrcset(n))},toArray=function(t){return"string"==typeof t&&(t=document.querySelectorAll(t)),t.length?[].slice.call(t):[t]},preload=function(t){var e=t.cloneNode(!1),r=e.dataset,n=r.src,o=r.srcset;return n&&(e.src=n),o&&(e.srcset=o),e};function display(t){t.dataset.src&&(t.src=t.dataset.src),t.dataset.srcset&&(t.srcset=t.dataset.srcset),t.removeAttribute("data-src"),t.removeAttribute("data-srcset")}var LazyLoader=function(){function r(t){_classCallCheck(this,r),this.images=toArray(t),this.settledCountdown=this.images.length,this.hasObservers=!1,this.onLoadCb=this.onErrorCb=this.onIntersectCb=this.onVisibleCb=function(){},this._init()}return _createClass(r,[{key:"_init",value:function(){this.images.forEach(translateDataset)}},{key:"_countDown",value:function(){this.settledCountdown--,!this.settledCountdown&&this.onAllSettledCb&&this.onAllSettledCb(this.images)}},{key:"_attachListeners",value:function(e,t){var r=this;t.addEventListener("load",function(t){display(e),r.onLoadCb(e),window.IntersectionObserver||(r.onIntersectCb(e),r.onVisibleCb(e)),r._countDown()}),t.addEventListener("error",function(t){display(e),r.onErrorCb(e),window.IntersectionObserver||(r.onIntersectCb(e),r.onVisibleCb(e)),r._countDown()})}},{key:"_setObservers",value:function(t){var e={root:(e=0<arguments.length&&void 0!==t?t:{}).root,rootMargin:e.rootMargin||"500px 500px 500px 500px",threshold:e.threshold||.01};this.intersectObs=new IntersectionObserver(function(t){var r=this;t.forEach(function(t){var e;t.intersectionRatio&&(e=preload(t.target),n._attachListeners(t.target,e),n.onIntersectCb(t.target),n.visibleObs.observe(t.target),r.unobserve(t.target))})},e),this.visibleObs=new IntersectionObserver(function(t){var e=this;t.forEach(function(t){t.intersectionRatio&&(n.onVisibleCb(t.target),e.unobserve(t.target))})},_objectSpread(_objectSpread({},e),{},{rootMargin:"0px 0px 0px 0px"}));var n=this;return this.hasObservers=!0,this}},{key:"loadAll",value:function(){var r=this;return this.images.forEach(function(t){var e=preload(t);r._attachListeners(t,e)}),this}},{key:"loadWithIO",value:function(t){var e=this,r=0<arguments.length&&void 0!==t?t:{};return window.IntersectionObserver?(this._setObservers(r),this.images.forEach(function(t){e.intersectObs.observe(t)}),this):this.loadAll()}},{key:"onLoad",value:function(t){return this.onLoadCb=t,this}},{key:"onError",value:function(t){return this.onErrorCb=t,this}},{key:"onAllSettled",value:function(t){return this.onAllSettledCb=t,this}},{key:"onVisible",value:function(t){return this.onVisibleCb=t,this}},{key:"onIntersection",value:function(t){return this.onIntersectCb=t,this}}],[{key:"loadWithIO",value:function(t,e){return new r(t).loadWithIO(e)}},{key:"loadAll",value:function(t){return new r(t).loadAll()}}]),r}(),_default=LazyLoader;exports.default=LazyLoader;
-},{"../../src/assets/**/*.*":"../src/assets/**/*.*"}],"index.js":[function(require,module,exports) {
+})({"../../../src/assets/**/*.*":[function(require,module,exports) {
+module.exports = {};
+},{}],"../bundle.js":[function(require,module,exports) {
 "use strict";
 
-var _mybundle = _interopRequireDefault(require("_mybundle"));
+function _typeof2(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+}), exports.default = void 0;
+
+var _ = _interopRequireDefault(require("../../src/assets/**/*.*"));
+
+function _interopRequireDefault(t) {
+  return t && t.__esModule ? t : {
+    default: t
+  };
+}
+
+function _classCallCheck(t, e) {
+  if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
+}
+
+function _defineProperties(t, e) {
+  for (var r = 0; r < e.length; r++) {
+    var n = e[r];
+    n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(t, n.key, n);
+  }
+}
+
+function _createClass(t, e, r) {
+  return e && _defineProperties(t.prototype, e), r && _defineProperties(t, r), t;
+}
+
+function ownKeys(e, t) {
+  var r,
+      n = Object.keys(e);
+  return Object.getOwnPropertySymbols && (r = Object.getOwnPropertySymbols(e), t && (r = r.filter(function (t) {
+    return Object.getOwnPropertyDescriptor(e, t).enumerable;
+  })), n.push.apply(n, r)), n;
+}
+
+function _objectSpread(e) {
+  for (var t = 1; t < arguments.length; t++) {
+    var r = null != arguments[t] ? arguments[t] : {};
+    t % 2 ? ownKeys(Object(r), !0).forEach(function (t) {
+      _defineProperty(e, t, r[t]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(r)) : ownKeys(Object(r)).forEach(function (t) {
+      Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(r, t));
+    });
+  }
+
+  return e;
+}
+
+function _defineProperty(t, e, r) {
+  return e in t ? Object.defineProperty(t, e, {
+    value: r,
+    enumerable: !0,
+    configurable: !0,
+    writable: !0
+  }) : t[e] = r, t;
+}
+
+function _typeof(t) {
+  return (_typeof = "function" == typeof Symbol && "symbol" == _typeof2(Symbol.iterator) ? function (t) {
+    return _typeof2(t);
+  } : function (t) {
+    return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : _typeof2(t);
+  })(t);
+}
+
+var getDictionary = function s(i, t) {
+  var a,
+      c = 1 < arguments.length && void 0 !== t ? t : "",
+      l = {};
+
+  for (var e in i) {
+    !function (e) {
+      var t,
+          r = i[e],
+          n = "string" == typeof (a = Object.keys(i[e]).map(function (t) {
+        return i[e][t];
+      }))[0],
+          o = "object" === _typeof(a[0]);
+
+      n ? (t = Object.keys(r)[0], l["".concat(c + e, ".").concat(t)] = r[t]) : o && (l = _objectSpread(_objectSpread({}, l), s(r, "".concat(c + e, "/"))));
+    }(e);
+  }
+
+  return l;
+},
+    dictionary = getDictionary(_.default),
+    translateSrc = function translateSrc(t) {
+  return dictionary[t] || t;
+},
+    translateSrcset = function translateSrcset(t) {
+  return t.split(",").reduce(function (t, e) {
+    var r = e.slice(0, e.lastIndexOf(" ")).trim(),
+        n = e.slice(e.lastIndexOf(" ") + 1);
+    return "".concat(t && t + ",", " ").concat(translateSrc(r), " ").concat(n);
+  }, "").trim();
+},
+    translateDataset = function translateDataset(t) {
+  var e = t.dataset,
+      r = e.src,
+      n = e.srcset;
+  r && (t.dataset.src = translateSrc(r)), n && (t.dataset.srcset = translateSrcset(n));
+},
+    toArray = function toArray(t) {
+  return "string" == typeof t && (t = document.querySelectorAll(t)), t.length ? [].slice.call(t) : [t];
+},
+    preload = function preload(t) {
+  var e = t.cloneNode(!1),
+      r = e.dataset,
+      n = r.src,
+      o = r.srcset;
+  return n && (e.src = n), o && (e.srcset = o), e;
+};
+
+function display(t) {
+  t.dataset.src && (t.src = t.dataset.src), t.dataset.srcset && (t.srcset = t.dataset.srcset), t.removeAttribute("data-src"), t.removeAttribute("data-srcset");
+}
+
+var LazyLoader = function () {
+  function r(t) {
+    _classCallCheck(this, r), this.images = toArray(t), this.settledCountdown = this.images.length, this.hasObservers = !1, this.onLoadCb = this.onErrorCb = this.onIntersectCb = this.onVisibleCb = function () {}, this._init();
+  }
+
+  return _createClass(r, [{
+    key: "_init",
+    value: function value() {
+      this.images.forEach(translateDataset);
+    }
+  }, {
+    key: "_countDown",
+    value: function value() {
+      this.settledCountdown--, !this.settledCountdown && this.onAllSettledCb && this.onAllSettledCb(this.images);
+    }
+  }, {
+    key: "_attachListeners",
+    value: function value(e, t) {
+      var r = this;
+      t.addEventListener("load", function (t) {
+        display(e), r.onLoadCb(e), window.IntersectionObserver || (r.onIntersectCb(e), r.onVisibleCb(e)), r._countDown();
+      }), t.addEventListener("error", function (t) {
+        display(e), r.onErrorCb(e), window.IntersectionObserver || (r.onIntersectCb(e), r.onVisibleCb(e)), r._countDown();
+      });
+    }
+  }, {
+    key: "_setObservers",
+    value: function value(t) {
+      var e = {
+        root: (e = 0 < arguments.length && void 0 !== t ? t : {}).root,
+        rootMargin: e.rootMargin || "500px 500px 500px 500px",
+        threshold: e.threshold || .01
+      };
+      this.intersectObs = new IntersectionObserver(function (t) {
+        var r = this;
+        t.forEach(function (t) {
+          var e;
+          t.intersectionRatio && (e = preload(t.target), n._attachListeners(t.target, e), n.onIntersectCb(t.target), n.visibleObs.observe(t.target), r.unobserve(t.target));
+        });
+      }, e), this.visibleObs = new IntersectionObserver(function (t) {
+        var e = this;
+        t.forEach(function (t) {
+          t.intersectionRatio && (n.onVisibleCb(t.target), e.unobserve(t.target));
+        });
+      }, _objectSpread(_objectSpread({}, e), {}, {
+        rootMargin: "0px 0px 0px 0px"
+      }));
+      var n = this;
+      return this.hasObservers = !0, this;
+    }
+  }, {
+    key: "loadAll",
+    value: function value() {
+      var r = this;
+      return this.images.forEach(function (t) {
+        var e = preload(t);
+
+        r._attachListeners(t, e);
+      }), this;
+    }
+  }, {
+    key: "loadWithIO",
+    value: function value(t) {
+      var e = this,
+          r = 0 < arguments.length && void 0 !== t ? t : {};
+      return window.IntersectionObserver ? (this._setObservers(r), this.images.forEach(function (t) {
+        e.intersectObs.observe(t);
+      }), this) : this.loadAll();
+    }
+  }, {
+    key: "onLoad",
+    value: function value(t) {
+      return this.onLoadCb = t, this;
+    }
+  }, {
+    key: "onError",
+    value: function value(t) {
+      return this.onErrorCb = t, this;
+    }
+  }, {
+    key: "onAllSettled",
+    value: function value(t) {
+      return this.onAllSettledCb = t, this;
+    }
+  }, {
+    key: "onVisible",
+    value: function value(t) {
+      return this.onVisibleCb = t, this;
+    }
+  }, {
+    key: "onIntersection",
+    value: function value(t) {
+      return this.onIntersectCb = t, this;
+    }
+  }], [{
+    key: "loadWithIO",
+    value: function value(t, e) {
+      return new r(t).loadWithIO(e);
+    }
+  }, {
+    key: "loadAll",
+    value: function value(t) {
+      return new r(t).loadAll();
+    }
+  }]), r;
+}(),
+    _default = LazyLoader;
+
+exports.default = LazyLoader;
+},{"../../src/assets/**/*.*":"../../../src/assets/**/*.*"}],"index.js":[function(require,module,exports) {
+"use strict";
+
+var _bundle = _interopRequireDefault(require("../bundle"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import LazyLoader from '_mybundle';
 // import LazyLoader from '../lib/lib/LazyLoader';
 var options = {
   root: document.getElementById('root')
@@ -178,7 +368,7 @@ var options = {
 // 	.onAllSettled(() => console.log('allSettledCb'));
 // window.IntersectionObserver = null;
 
-_mybundle.default.loadWithIO('.img', options).onLoad(function (img) {
+_bundle.default.loadWithIO('.img', options).onLoad(function (img) {
   return console.log('onLoadCb', img);
 }).onError(function (img) {
   return console.log('onErrorCb', img);
@@ -191,7 +381,7 @@ _mybundle.default.loadWithIO('.img', options).onLoad(function (img) {
 });
 
 document.querySelector('button').addEventListener('click', function () {
-  return _mybundle.default.loadAll('.with-button').onLoad(function (img) {
+  return _bundle.default.loadAll('.with-button').onLoad(function (img) {
     return img.classList.add('fadein');
   }).onAllSettled(function () {
     return console.log('allSettled');
@@ -207,7 +397,7 @@ document.querySelector('button').addEventListener('click', function () {
 // LazyLoader
 // 	.loadWithIO(imageMap)
 // 	.onVisible(img => img.classList.add('fadein'));
-},{"_mybundle":"../node_modules/_mybundle/bundle.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../bundle":"../bundle.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -235,7 +425,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64145" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52392" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
