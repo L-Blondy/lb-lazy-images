@@ -1,6 +1,6 @@
 # lb-lazy-images v2
 
-Lazy load utility for `Parcel-bundler`.  
+Lazy load utility for **Parcel-bundler**.  
 Based on the `IntersectionObserver` API. If the IntersectionObserver API is not supported/polyfilled, all images will eagerload.
 
 # Requirements
