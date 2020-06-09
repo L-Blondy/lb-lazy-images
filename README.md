@@ -25,14 +25,12 @@ import LazyLoader from "lb-lazy-images";
 ```
 
 ### Load with IntersectionObserver:
+Basic usage
 ```
-//Basic usage
-
 LazyLoader.loadWithIO('.selector')
 ```
+Customize the Observer, (the following are the defaults)
 ```
-//customize the Observer, (the following are the defaults)
-
 const options= {
 	root: viewport,
 	rootMargin: '500px 500px 500px 500px',
@@ -41,9 +39,8 @@ const options= {
 
 LazyLoader.loadWithIO('.selector', options)
 ```
+Add some callbacks to each image if you wish
 ```
-//add some callbacks to each image if you wish
-
 LazyLoader
 	.loadWithIO('.selector')
 	.onLoad( img => do something )
@@ -85,7 +82,7 @@ const imageMap = sourceMap.map(src => {
 	return img;
 });
 
-//Lazyload + add some nice animation:
+//Lazyload + add some nice animation on scroll:
 LazyLoader
 	.loadWithIO(imageMap)
 	.onVisible(img => img.classList.add('fadein'));
