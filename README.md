@@ -8,7 +8,7 @@ Based on the `IntersectionObserver` API. If the IntersectionObserver API is not 
 
 # usage
 
-**HTML**
+## **HTML**
 
 `data-src` and `data-srcset` paths start from ~~`src/assets`~~ excluded: 
 ```
@@ -19,7 +19,7 @@ Based on the `IntersectionObserver` API. If the IntersectionObserver API is not 
 />
 ```
 
-**Javascript**
+## **Javascript**
 ```
 import LazyLoader from "lb-lazy-images";
 ```
