@@ -10,7 +10,7 @@ Based on the `IntersectionObserver` API. If the IntersectionObserver API is not 
 
 ### HTML
 
-`data-src` and `data-srcset` paths start from ~~`src/assets`~~ excluded: 
+**Important :** `data-src` and `data-srcset` paths start from ~~`src/assets`~~ excluded: 
 ```
 <img 
 	src="placeholder.jpg" 
