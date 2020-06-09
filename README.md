@@ -54,7 +54,7 @@ LazyLoader
 
 ```
 
-#### Or load with some event:
+### Or load with some event:
 
 ```
 button.addEventListener('click', ()=>{
