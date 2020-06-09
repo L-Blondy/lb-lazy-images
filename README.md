@@ -29,7 +29,7 @@ import LazyLoader from "lb-lazy-images";
 LazyLoader.loadWithIO('.selector')
 ```
 
-Customize the Observer :
+Customize the IntersectionObserver :
 ```
 //defaults:
 const options= {
@@ -41,7 +41,7 @@ const options= {
 LazyLoader.loadWithIO('.selector', options)
 ```
 
-Add some callbacks to each image if you wish :
+Add some callback to each image if you wish :
 ```
 LazyLoader
 	.loadWithIO('.selector')
