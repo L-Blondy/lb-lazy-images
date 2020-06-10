@@ -95,5 +95,5 @@ LazyLoader
 ```
 And that's it !
 
-⭐ ⭐Upvote the [GitHub repo](https://github.com/L-Blondy/lb-lazy-images) if you like this library !⭐
+<p style="display: flex; align-items: center;">⭐ Upvote the <a target='_blank' rel='noref noreopener' style='padding: 0.5rem;' href='https://github.com/L-Blondy/lb-lazy-images'> GitHub repo </a> if you like this library !</p>
 
