@@ -95,6 +95,5 @@ LazyLoader
 ```
 And that's it !
 
-![star icon](https://img.icons8.com/fluent/48/000000/star.png)
+#### ⭐ Upvote the [GitHub repo](https://github.com/L-Blondy/lb-lazy-images) if you like this library !
 
-#### Upvote the [GitHub repo](https://github.com/L-Blondy/lb-lazy-images) if you like this library !
