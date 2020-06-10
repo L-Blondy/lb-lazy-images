@@ -1,6 +1,6 @@
 {
 	"name": "lb-lazy-images",
-	"version": "2.0.5",
+	"version": "2.0.6",
 	"description": "Lazy load images utility for Parcel-bundler",
 	"main": "bundle.js",
 	"scripts": {
