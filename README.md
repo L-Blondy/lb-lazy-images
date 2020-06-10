@@ -95,5 +95,5 @@ LazyLoader
 ```
 And that's it !
 
-⭐ ⭐ ⭐
+[⭐ ⭐ ⭐](https://github.com/L-Blondy/lb-lazy-images)
 
