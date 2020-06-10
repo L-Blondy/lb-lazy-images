@@ -20,7 +20,7 @@ Size : 1.6KB Gzipped
 />
 ```
 
-### Auto load (on scroll) with IntersectionObserver :
+### Load on scroll with IntersectionObserver :
 
 Basic usage :
 ```
