@@ -1,4 +1,5 @@
-import LazyLoader from '../bundle';
+import LazyLoader from '_mybundle';
+// import { loadWithIO, loadAll } from '_mybundle';
 // import LazyLoader from '_mybundle';
 // import LazyLoader from '../lib/lib/LazyLoader';
 
