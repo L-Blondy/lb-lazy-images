@@ -67,7 +67,7 @@ button.addEventListener('click', ()=>{
 })
 ```
 
-### Generate lots of lazy loaded images with JS :
+### Generate lots of lazy loading images with JS :
 
 Import the sources + library : 
 ```
