@@ -95,5 +95,4 @@ LazyLoader
 ```
 And that's it !
 
-### Checkout the GitHub repo
-<a href='https://github.com/L-Blondy/lb-lazy-images' target="_blank" rel="noopener noreferrer">here</a> if you like this library.
+#### Upvote the GitHub repo <a href='https://github.com/L-Blondy/lb-lazy-images' target="_blank" rel="noopener noreferrer">here</a> if you like this library !
