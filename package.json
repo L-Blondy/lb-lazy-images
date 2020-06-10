@@ -8,7 +8,10 @@
 		"build": "npx babel lib/lib/_toBundle.js --out-file bundle.js && uglifyjs bundle.js -o bundle.js -c -m && copyfiles bundle.js node_modules/_mybundle",
 		"deploy": "npm run build && npm publish"
 	},
-	"author": "",
+	"author": {
+		"name": "Laurent Blondy",
+		"email": "laurent.blondy948@gmail.com"
+	},
 	"license": "MIT",
 	"files": [
 		"bundle.js"
@@ -24,6 +27,10 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/L-Blondy/lb-lazy-images.git"
+	},
+	"bugs": {
+		"url": "https://github.com/L-Blondy/lb-lazy-images/issues",
+		"email": "laurent.blondy948@gmail.com"
 	},
 	"keywords": [
 		"lazy load images",

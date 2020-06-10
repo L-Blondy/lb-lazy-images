@@ -94,3 +94,5 @@ LazyLoader
 	.onVisible(img => img.classList.add('fadein'));
 ```
 And that's it !
+
+Checkout the GitHub repo 
