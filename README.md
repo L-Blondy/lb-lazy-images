@@ -69,10 +69,13 @@ button.addEventListener('click', ()=>{
 
 ### Generate many lazy loaded images with javascript :
 
+Import the sources + library : 
 ```
-import LazyLoader from  "lb-lazy-images"
 import sources from '../src/assets/*.*';
-
+import LazyLoader from  "lb-lazy-images"
+```
+Generate a map of images and append them to the DOM :
+```
 const sourceMap = Object.values(sources).map(val => (
 	Object.values(val)[ 0 ]
 ));
@@ -83,7 +86,9 @@ const imageMap = sourceMap.map(src => {
 	container.appendChild(img);
 	return img;
 });
-
+```
+Use the library to setup Lazy Loading :
+```
 //Lazyload + add some nice animation on scroll:
 LazyLoader
 	.loadWithIO(imageMap)
