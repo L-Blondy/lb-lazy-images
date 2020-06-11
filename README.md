@@ -52,13 +52,13 @@ const options= {
 LazyLoader.loadOnScroll('.selector', options)
 ```
 
-Add some callback to each image if you wish :
+Add some callback if you wish :
 ```
 LazyLoader
 	.loadOnScroll('.selector')
+	.onIntersection( img => do something )
 	.onLoad( img => do something )
 	.onError( img => do something )
-	.onIntersection( img => do something )
 	.onVisible( img => img.classList.add('fadein') ) //animate here
 	.onAllSettled( images => do something )
 
