@@ -107,10 +107,10 @@ LazyLoader
 
 # Loading methods :
 
-| Method       | Description
-| ------------ | --------------------------------
-| loadOnScroll | Loads the images with the IntersectionObserver API. Fallsback to `loadAll` for older Browsers |
-| loadAll      | Starts loading all the images when called.
+| Method       | Argument 1 | Argument 2 |Description
+| ------------ | ---------- | ---------- |-------------------------------
+| loadOnScroll | string, Node, NodeList, Array | Object (see IntersectionObserver documentation) | Loads the images with the IntersectionObserver API. Fallsback to `loadAll` for older Browsers |
+| loadAll      | string, Node, NodeList, Array |       N/A     | Starts loading all the images when called.
 
 # Event hooks : 
 
