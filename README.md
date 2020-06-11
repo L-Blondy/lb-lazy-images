@@ -109,8 +109,8 @@ LazyLoader
 
 | Method       | Argument 1 | Argument 2 |Description
 | ------------ | ---------- | ---------- |-------------------------------
-| loadOnScroll | string, Node, NodeList, Array, HTMLCollection | Object (see MDN [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver) documentation) | Loads the images with the IntersectionObserver API. Fallsback to `loadAll` for older Browsers |
-| loadAll      | string, Node, NodeList, Array, HTMLCollection |       N/A     | Starts loading all the images when called.
+| loadOnScroll | String, Node, NodeList, Array, HTMLCollection | Object | Loads the images with the IntersectionObserver API. Fallsback to `loadAll` for older Browsers |
+| loadAll      | String, Node, NodeList, Array, HTMLCollection |       N/A     | Starts loading all the images when called.
 
 # Event hooks : 
 
