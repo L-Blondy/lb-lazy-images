@@ -1,6 +1,6 @@
-// import LazyLoader from '_mybundle';
+import LazyLoader from '_mybundle';
 // import { loadWithIO, loadAll } from '_mybundle';
-import LazyLoader from '../lib/lib/LazyLoader';
+// import LazyLoader from '../lib/lib/LazyLoader';
 
 const options = {
 	root: document.getElementById('root'),
@@ -13,17 +13,14 @@ const options = {
 // 	.onError((e) => console.log('onErrorCb'))
 // 	.onAllSettled(() => console.log('allSettledCb'));
 
-window.IntersectionObserver = null;
-
-
-
+// window.IntersectionObserver = null;
 
 LazyLoader
 	.loadOnScroll('.img', options)
 	.onLoad(img => console.log('onLoadCb'))
 	.onError(img => console.log('onErrorCb'))
 	.onIntersection(img => console.log('onIntersectCb'))
-	.onVisible(img => console.log('onVisibleCb'))
+	.onVisible(img => img.classList.add('fadein'))
 	.onAllSettled(images => console.log('allSettledCb', images));
 
 document.querySelector('button').addEventListener('click', () => (

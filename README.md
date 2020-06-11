@@ -9,7 +9,7 @@ If the `IntersectionObserver` API is not supported/polyfilled, all images will e
 - Built-in **Caching system** to prevent partial image rendering.
 - Use **plain HTML syntax** to set img data-src and data-srcset.
 - No **fallback setup** to worry about for old browsers, it's already taken care of.
-- **Event hooks** are available for debugging / animating
+- Built-in **Event hooks** for easy animations and debugging
 
 # Requirements
 - parcel-bundler
@@ -107,7 +107,7 @@ LazyLoader
 
 # Loading methods :
 
-| Method       | Argument 1 | Argument 2 |Description
+| Method       | Arg 1 | Arg 2 |Description
 | ------------ | ---------- | ---------- |-------------------------------
 | loadOnScroll | String, Node, NodeList, Array, HTMLCollection | Object | Loads the images with the IntersectionObserver API. Fallsback to `loadAll` for older Browsers |
 | loadAll      | String, Node, NodeList, Array, HTMLCollection |       N/A     | Starts loading all the images when called.
