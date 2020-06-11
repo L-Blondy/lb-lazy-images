@@ -116,11 +116,11 @@ LazyLoader
 
 | Method         |  loadOnScroll | loadAll  | Description
 | -------------- | ------------- | -------- | ---------
-| onIntersection | X             |          | Fires when the image hits the margin of the IntersectionObserver root. Caching will start here. Will fire just before onLoad if the intersectionObserver is not supported.
-| onLoad         | X             | X        | Fires when the image loads. The image src/srcset are loaded in the DOM. 
-| onError        | X             | X        | Fires on loading error
+| onIntersection | X             |          | Fires when the image hits the margin of the IntersectionObserver root. Image will start loading here. Will fire just before `onLoad` if the intersectionObserver is not supported.
+| onLoad         | X             | X        | Fires when the image loads. The image src/srcset are loaded in the DOM here. 
+| onError        | X             | X        | Fires on loading error. The image src/srcset are still loaded in the DOM here. 
 | onVisible      | X             |          | Fires when the image enters the IntersectionObserver root. Will fire right after onLoad if the intersectionObserver is not supported.
-| onAllSettled   | X             | X        | Fires when all images are settled, whether or not they gave an error.
+| onAllSettled   | X             | X        | Fires when all images have finished loading, whether or not there was an error.
 
 
 [⭐ ⭐ ⭐](https://github.com/L-Blondy/lb-lazy-images)
