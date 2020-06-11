@@ -1,10 +1,10 @@
 import LazyLoader from '_mybundle';
 // import { loadWithIO, loadAll } from '_mybundle';
-// import LazyLoader from '_mybundle';
 // import LazyLoader from '../lib/lib/LazyLoader';
 
 const options = {
 	root: document.getElementById('root'),
+	rootMargin: '100px 100px 100px 100px'
 };
 
 // new LazyLoader('.img')
@@ -19,7 +19,7 @@ const options = {
 
 
 LazyLoader
-	.loadWithIO('.img', options)
+	.loadOnScroll('.img', options)
 	.onLoad(img => console.log('onLoadCb', img))
 	.onError(img => console.log('onErrorCb', img))
 	.onIntersection(img => console.log('onIntersectCb', img))
@@ -27,6 +27,7 @@ LazyLoader
 	.onAllSettled(images => console.log('allSettledCb', images));
 
 document.querySelector('button').addEventListener('click', () => (
+
 	LazyLoader
 		.loadAll('.with-button')
 		.onLoad(img => img.classList.add('fadein'))
@@ -43,5 +44,5 @@ document.querySelector('button').addEventListener('click', () => (
 // 	return img;
 // });
 // LazyLoader
-// 	.loadWithIO(imageMap)
+// 	.loadOnScroll(imageMap)
 // 	.onVisible(img => img.classList.add('fadein'));

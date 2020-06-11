@@ -1,17 +1,28 @@
 # lb-lazy-images v2
 
-Lazy load utility for **Parcel-bundler**.  
-Based on the `IntersectionObserver` API. If the IntersectionObserver API is not supported/polyfilled, all images will eagerload.  
+Image Lazy loading utility for **Parcel-bundler**.  
+If the `IntersectionObserver` API is not supported/polyfilled, all images will eagerload.  
 1.6KB Gzipped
+
+# Features
+
+- Built-in **Caching system** to prevent partial image rendering.
+- Use **plain HTML syntax** to set img data-src and data-srcset.
+- No **fallback setup** to worry about for old browsers, it's already taken care of.
+- **Event hooks** are available for debugging / animating
 
 # Requirements
 - parcel-bundler
 
-# usage
+# Usage
 
 ### HTML
 
-**Important :** `data-src` and `data-srcset` paths start from ~~`src/assets`~~ excluded: 
+**Important :** 
+- All images have to be located in **src/assets**.   
+`data-src` and `data-srcset` paths start from **~~`src/assets`~~** excluded
+- **URLs** and **imported filenames** are still supported if you have a different file structure.
+
 ```
 <img 
 	src="placeholder.jpg" 
@@ -20,13 +31,13 @@ Based on the `IntersectionObserver` API. If the IntersectionObserver API is not 
 />
 ```
 
-### Load on scroll with IntersectionObserver :
+### Load on scroll with the IntersectionObserver :
 
 Basic usage :
 ```
 import LazyLoader from "lb-lazy-images";
 
-LazyLoader.loadWithIO('.selector')
+LazyLoader.loadOnScroll('.selector')
 ```
 
 Customize the IntersectionObserver :
@@ -38,13 +49,13 @@ const options= {
 	threshold: 0.01
 }
 
-LazyLoader.loadWithIO('.selector', options)
+LazyLoader.loadOnScroll('.selector', options)
 ```
 
 Add some callback to each image if you wish :
 ```
 LazyLoader
-	.loadWithIO('.selector')
+	.loadOnScroll('.selector')
 	.onLoad( img => do something )
 	.onError( img => do something )
 	.onIntersection( img => do something )
@@ -90,7 +101,7 @@ const imageMap = sourceMap.map(src => {
 Setup Lazy Loading using the map :
 ```
 LazyLoader
-	.loadWithIO(imageMap)
+	.loadOnScroll(imageMap)
 	.onVisible(img => img.classList.add('fadein'));
 ```
 And that's it !
