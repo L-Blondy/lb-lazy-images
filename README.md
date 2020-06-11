@@ -9,7 +9,7 @@ If the `IntersectionObserver` API is not supported/polyfilled, all images will e
 - Built-in **Caching system** to prevent partial image rendering.
 - Use **plain HTML syntax** to set img data-src and data-srcset.
 - No **fallback setup** to worry about for old browsers, it's already taken care of.
-- Built-in **Event hooks** for easy animations and debugging
+- Built-in **Event hooks** for easy animations and debugging.
 
 # Requirements
 - parcel-bundler
@@ -21,7 +21,7 @@ If the `IntersectionObserver` API is not supported/polyfilled, all images will e
 **Important :** 
 - All images have to be located in **src/assets**.   
 `data-src` and `data-srcset` paths start from **~~`src/assets`~~** excluded
-- **URLs** and **imported filenames** are still supported if you have a different file structure.
+- If you have a different file structure **URLs** and **imported filenames** are still supported.
 
 ```
 <img 
