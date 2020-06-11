@@ -104,7 +104,24 @@ LazyLoader
 	.loadOnScroll(imageMap)
 	.onVisible(img => img.classList.add('fadein'));
 ```
-And that's it !
+
+# Loading methods :
+
+| Method       | Description
+| ------------ | ------------------- | -------------
+| loadOnScroll | Loads the images with the IntersectionObserver API. Fallsback to `loadAll` for older Browsers |
+| loadAll      | Starts loading all the images when called              |
+
+# Event hooks : 
+
+| Method         |  loadOnScroll | loadAll  | Description
+| -------------- | ------------- | -------- | ---------
+| onIntersection | X             |          | Fires when the image hits the margin of the IntersectionObserver root. Caching will start here.
+| onLoad         | X             | X        | Fires when the image loads. The image src/srcset are loaded in the DOM
+| onError        | X             | X        | Fires on loading error
+| onVisible      | X             |          | Fires when the image enters the IntersectionObserver root
+| onAllSettled   | X             | X        | Fires when all images are settled, whether or not they gave an error.
+
 
 [⭐ ⭐ ⭐](https://github.com/L-Blondy/lb-lazy-images)
 
